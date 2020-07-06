@@ -15,7 +15,7 @@ body {
 .logo {
     grid-column: 1 / 2;
     grid-row: 1 / 2;
-    background-image: url("static/images/SRKPI_WithTextCyr.svg");
+    background-image: url('static/images/SRKPI_WithTextCyr.svg');
     background-size: contain;
     background-repeat: no-repeat;
 }
@@ -88,7 +88,7 @@ a:link {
     .logo {
         grid-column: 1 / 2;
         grid-row: 1 / 2;
-        background-image: url("static/images/SRKPI_WithTextCyr.svg");
+        background-image: url('static/images/SRKPI_WithTextCyr.svg');
         background-size: contain;
         background-repeat: no-repeat;
     }
