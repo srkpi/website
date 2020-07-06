@@ -1,0 +1,130 @@
+@font-face {
+    font-family: 'SF Pro Display';
+    src: url() format('woff2')
+         url('static/fonts/webfont.woff2') format('woff2'), /* Super Modern Browsers */
+
+  }
+
+body {
+    margin: 48px;
+    display: grid;
+    grid-template-columns: 30% 20% 25% 25%;
+    grid-template-rows: 15% 45% 25% 15%;
+}
+
+.logo {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    background-image: url("images/SRKPI_WithTextCyr.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.language {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+}
+
+.description {
+    grid-column: 1 / 3;
+    grid-row: 2 / 3;
+    margin: 30px 10px 10px 0px;
+    font-family: 'SF Pro Display';
+    font-style: normal;
+    font-size: 18px;
+    justify-self: start;
+}
+
+.targets {
+    grid-column: 1 / 3;
+    grid-row: 3 / 4;
+}
+
+.telegram_feed {
+    grid-column: 3 / span 5;
+    grid-row: 1 / span 5;
+    margin-left: 10px;
+}
+
+.adress {
+    grid-column: 1 / 2;
+    grid-row: 4 / 5;
+    font-family: 'SF Pro Display';
+    font-style: normal;
+    font-size: 18px;
+    justify-self: start;
+    align-self: center;
+}
+
+.social {
+    grid-column: 2 / 3;
+    grid-row: 4 / 5;
+    font-size: 48px;
+    justify-self: end;
+    align-self: center;
+}
+
+a:link {
+    color:inherit;
+}
+
+.fa-instagram {
+    margin-right: 64px;
+    color: inherit;
+}
+
+.fa-facebook {
+    color: inherit;
+    margin-right: 24px;
+}
+
+@media only screen and (max-width: 768px) {
+    body {
+        margin: 15px;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 60px 2fr 1fr 4fr 1fr 1fr;
+    }
+    .logo {
+        grid-column: 1 / 2;
+        grid-row: 1 / 2;
+        background-image: url("images/SRKPI_WithTextCyr.svg");
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+    .description {
+        grid-column: 1 / 3;
+        grid-row: 2 / 3;
+        margin: 20px 0px 20px 0px;
+    }
+    .targets {
+        grid-column: 1 / 3;
+        grid-row: 3 / 4;
+    }
+    .telegram_feed {
+        grid-column: 1 / 3;
+        grid-row: 4 / 5;
+        margin: 0px;
+    }
+    .adress {
+        padding: 10px 0px 10px 0px;
+        grid-column: 1 / 3;
+        grid-row: 5 / 6;
+    }
+    .social {
+        padding: 10px 0px 10px 0px;
+        grid-column: 1 / 3;
+        grid-row: 6 / 7;
+        justify-self: center;
+    }
+
+    .fa-instagram {
+        margin-right: 50px;
+        color: inherit;
+    }
+    
+    .fa-facebook {
+        color: inherit;
+        margin-right: 0px;
+    }
+}
