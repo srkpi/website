@@ -1,9 +1,8 @@
 @font-face {
-    font-family: 'SF Pro Display';
-    src: url() format('woff2')
-         url('static/fonts/webfont.woff2') format('woff2'), /* Super Modern Browsers */
-
-  }
+    font-family: "SF Display";
+    font-weight: 800;
+    src: url("https://sf.abarba.me/SF-UI-Display-Heavy.otf");
+}
 
 body {
     margin: 48px;
@@ -29,7 +28,7 @@ body {
     grid-column: 1 / 3;
     grid-row: 2 / 3;
     margin: 30px 10px 10px 0px;
-    font-family: 'SF Pro Display';
+    font-family: SF Display;
     font-style: normal;
     font-size: 18px;
     justify-self: start;
@@ -49,7 +48,7 @@ body {
 .adress {
     grid-column: 1 / 2;
     grid-row: 4 / 5;
-    font-family: 'SF Pro Display';
+    font-family: SF Display;
     font-style: normal;
     font-size: 18px;
     justify-self: start;
