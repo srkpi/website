@@ -1,6 +1,6 @@
 @font-face {
     font-family: "SF Display";
-    src: url("../SFDisplayRegular.otf") format('opentype');
+    src: url("SFDisplayRegular.otf") format('opentype');
     font-weight: normal;
     font-style: normal;
 }
