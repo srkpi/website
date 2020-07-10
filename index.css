@@ -1,7 +1,7 @@
 @font-face {
     font-family: "SF Display";
     font-weight: 400;
-    src: url("SFUIDisplay-Regular.otf");
+    src: url(SFUIDisplay-Regular.otf);
   }
 
 body {
