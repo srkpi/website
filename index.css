@@ -1,7 +1,7 @@
 @font-face {
     font-family: "SF Display";
-    font-weight: 800;
-    src: url("https://sf.abarba.me/SF-UI-Display-Heavy.otf");
+    font-weight: 400;
+    src: url("https://sf.abarba.me/SF-UI-Display-Regular.otf");
 }
 
 body {
