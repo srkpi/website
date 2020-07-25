@@ -1,7 +1,7 @@
 @font-face {
     font-family: "SF Display";
     font-weight: 400;
-    src: url('/fonts/SFUIDisplayRegular.ttf') format('truetype');
+    src: url('fonts/SFUIDisplayRegular.ttf') format('truetype');
   }
 
 body {
@@ -33,16 +33,16 @@ header {
     position: relative;
     font-family: SF Display;
     font-style: normal;
-    font-size: 2.45vw;
+    font-size: calc(28px + (91 - 28) * ((100vw - 1280px) / (4096 - 1280)));
     justify-self: start;
 }
 
 #our-tasks {
     position: relative;
-    padding-top: 5%;
+    padding-top: calc(48px + (86 - 48) * ((100vw - 1280px) / (4096 - 1280)));
     font-family: SF Display;
     font-style: normal;
-    font-size: 2.45vw;
+    font-size: calc(28px + (91 - 28) * ((100vw - 1280px) / (4096 - 1280)));
     justify-self: start;
 }
 
@@ -65,7 +65,7 @@ footer {
     grid-row: 1 / 2;
     font-family: SF Display;
     font-style: normal;
-    font-size: 1.5vw;
+    font-size: calc(18px + (48 - 18) * ((100vw - 1280px) / (4096 - 1280)));
     justify-self: start;
     align-self: center;
 }
@@ -106,7 +106,7 @@ a:link {
         margin: 15px;
         display: grid;
         grid-template-columns: 1fr;
-        grid-template-rows: 1fr 2fr 5fr 1fr 1fr;
+        grid-template-rows: 10% 20% 50% 10% 10%;
     }
 
     header {
@@ -131,7 +131,7 @@ a:link {
         position: relative;
         font-family: SF Display;
         font-style: normal;
-        font-size: 4vw;
+        font-size: calc(14px + (28 - 14) * ((100vw - 300px) / (1600 - 300)));
         justify-self: start;
     }
 
@@ -140,14 +140,14 @@ a:link {
         padding-top: 2%;
         font-family: SF Display;
         font-style: normal;
-        font-size: 4vw;
+        font-size: calc(14px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
         justify-self: start;
     }
 
     .telegram_feed {
         grid-column: 1 / 2;
         grid-row: 3 / 4;
-        margin: 0px;
+        padding-top: 5%;
     }
 
     footer {
@@ -164,7 +164,7 @@ a:link {
         position: relative;
         align-self: initial;
         padding-top: 3%;
-        font-size: 3.5vw;
+        font-size: calc(14px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
     }
 
     #contact {
