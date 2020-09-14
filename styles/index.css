@@ -1,0 +1,194 @@
+@font-face {
+    font-family: "SF Display";
+    font-weight: 400;
+    src: url('fonts/SFUIDisplayRegular.ttf') format('truetype');
+  }
+
+body {
+    margin: 2%;
+    display: grid;
+    grid-template-columns: 3fr 2fr 2.5fr 2.5fr;
+    grid-template-rows: 15% 70% 15%;
+}
+
+header {
+    display: grid;
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+}
+
+#logo {
+    background-image: url('static/images/SRKPI_WithTextCyr.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.about {
+    grid-column: 1 / 3;
+    grid-row: 2 / 3;
+    margin: 5% 5% 5% 0%;
+}
+
+#description {
+    position: relative;
+    font-family: SF Display;
+    font-style: normal;
+    font-size: calc(28px + (91 - 28) * ((100vw - 1280px) / (4096 - 1280)));
+    justify-self: start;
+}
+
+#our-tasks {
+    position: relative;
+    padding-top: calc(48px + (86 - 48) * ((100vw - 1280px) / (4096 - 1280)));
+    font-family: SF Display;
+    font-style: normal;
+    font-size: calc(28px + (91 - 28) * ((100vw - 1280px) / (4096 - 1280)));
+    justify-self: start;
+}
+
+.telegram_feed {
+    grid-column: 3 / 5;
+    grid-row: 1 / 4;
+    margin-left: 10px;
+}
+
+footer {
+    grid-column:  1 / 3;
+    grid-row: 3 / 4;
+    display: grid;
+    grid-template-columns: 60% 40%;
+    grid-template-rows: 1fr;
+}
+
+#address {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    font-family: SF Display;
+    font-style: normal;
+    font-size: calc(18px + (48 - 18) * ((100vw - 1280px) / (4096 - 1280)));
+    justify-self: start;
+    align-self: center;
+}
+
+#contact {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+    display: inline;
+    font-size: 3vw;
+    align-self: center;
+}
+
+a:link {
+    color:inherit;
+}
+
+.fa-instagram {
+    position: relative;
+    color: inherit;
+    margin-left: 15%;
+    margin-right: 2%;
+}
+
+.fa-facebook {
+    position: relative;
+    color: inherit;
+    margin-left: 7.5%;
+    margin-right: 7.5%;
+}
+
+.fa-inbox {
+    position: relative;
+    color: black;
+}
+
+@media only screen and (max-width: 768px) {
+    body {
+        margin: 15px;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 10% 20% 50% 10% 10%;
+    }
+
+    header {
+        display: grid;
+        grid-column: 1 / 2;
+        grid-row: 1 / 2;
+    }
+
+    #logo {
+        background-image: url('static/images/SRKPI_WithTextCyr.svg');
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    .about {
+        grid-column: 1 / 2;
+        grid-row: 2 / 3;
+        margin: 2% 0px 2% 0px;
+    }
+
+    #description {
+        position: relative;
+        font-family: SF Display;
+        font-style: normal;
+        font-size: calc(14px + (28 - 14) * ((100vw - 300px) / (1600 - 300)));
+        justify-self: start;
+    }
+
+    #our-tasks {
+        position: relative;
+        padding-top: 2%;
+        font-family: SF Display;
+        font-style: normal;
+        font-size: calc(14px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
+        justify-self: start;
+    }
+
+    .telegram_feed {
+        grid-column: 1 / 2;
+        grid-row: 3 / 4;
+        padding-top: 5%;
+    }
+
+    footer {
+        grid-column:  1 / 2;
+        grid-row: 4 / 6;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(2, 1fr);
+    }
+
+    #address {
+        grid-column: 1 / 2;
+        grid-row: 1 / 2;
+        position: relative;
+        align-self: initial;
+        padding-top: 3%;
+        font-size: calc(14px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
+    }
+
+    #contact {
+        grid-column: 1 / 2;
+        grid-row: 2 / 3;
+        font-size: 9vw;
+        align-self: center;
+    }
+
+    .fa-instagram {
+        position: relative;
+        color: inherit;
+        margin-left: 25%;
+        margin-right: 2%;
+    }
+    
+    .fa-facebook {
+        position: relative;
+        color: inherit;
+        margin-right: 10%;
+    }
+    
+    .fa-inbox {
+        position: relative;
+        color: black;
+    }
+}
