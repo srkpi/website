@@ -10,7 +10,27 @@ ini_set('display_errors', 1);
 define('FPDF_FONTPATH','fpdf/font/'); // Подключение шрифта
 require('fpdf/fpdf.php');             // подключение библиотеки
 
-class PDF extends FPDF
+$pdf = new MYPDF('L','mm','A5');
+
+function studentinfo(){
+    $res[0]["Faculty"]="ФІОТ";
+    $res[0]["Group"]="ІС-92мн";
+    $res[0]["Name"]= "М'яча Дмитра Олександровича";
+    $res[0]["MobPhone"]= "0671234567";
+    $res[0]["Bank"]= "АТ КБ \"ПриватБанк\"";
+    $res[0]["Account"]="UA343052990000026208749452253";
+    $res[0]["IPN"]="1234567890";
+    $res[0]["date"]="13.09.2020 р.";
+    return $res;
+}
+$dataHeader = studentinfo();
+$pdf->AddPage();
+$pdf->HeaderZaiava($dataHeader);
+$pdf->Zaiava($dataHeader);
+
+$pdf->Output('I' ,'application.pdf');
+
+class MYPDF extends FPDF
 {
 	function HeaderZaiava($dataHeader) // шапка 
 	{	
@@ -87,23 +107,4 @@ class PDF extends FPDF
 	
 }
 
-$pdf = new PDF('L','mm','A5');
-
-function studentinfo(){
-	$res[0]["Faculty"]="ФІОТ";
-	$res[0]["Group"]="ІС-92мн";
-	$res[0]["Name"]= "М'яча Дмитра Олександровича";
-	$res[0]["MobPhone"]= "0671234567";
-	$res[0]["Bank"]= "АТ КБ \"ПриватБанк\"";
-	$res[0]["Account"]="UA343052990000026208749452253";
-	$res[0]["IPN"]="1234567890";
-	$res[0]["date"]="13.09.2020 р.";
-	return $res;
-}
-$dataHeader = studentinfo();
-$pdf->AddPage();
-$pdf->HeaderZaiava($dataHeader);
-$pdf->Zaiava($dataHeader);
-
-$pdf->Output('I' ,'application.pdf');
 ?>
