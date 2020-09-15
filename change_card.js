@@ -53,8 +53,8 @@ function onDownload() {
             type: "POST",
             data: {download:1},
             url: 'change_card.php',
-            success: function(response){
-                console.log(1);
+            success: function(url){
+                window.open(url, '_blank')
             }
     })
 }
