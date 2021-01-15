@@ -1,4 +1,4 @@
-# srkpi.github.io
+# Read the fukkin manual
 
 # Дебаггінг
 ## У Visual Studio Code
