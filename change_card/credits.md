@@ -1,1 +1,1 @@
-• [Create GMail letter by using official API]https://stackoverflow.com/a/31792244
+• [Create GMail letter by using official API](https://stackoverflow.com/a/31792244)
