@@ -1,0 +1,79 @@
+<html>
+    <head>
+	<title>Формування заяви для зміни картки | Студрада КПІ ім. Ігоря Сікорського</title>
+        <meta charset="utf-8">
+        <link rel= "stylesheet" type= "text/css" href= "styles/change_card.css">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+        <link rel="apple-touch-icon" sizes="180x180" href="favicon_package/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="favicon_package/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="favicon_package/favicon-16x16.png">
+        <!-- <link rel="manifest" href="favicon_package/site.webmanifest"> -->
+        <link rel="mask-icon" href="favicon_package/safari-pinned-tab.svg" color="#5bbad5">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="theme-color" content="#ffffff">
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script type="text/javascript" src="js/change_card.js"></script>
+		<script src='js/pdfmake.min.js'></script> 
+		<script src='js/vfs_fonts.js'></script>
+    </head>
+    <body>        
+		<h1>Формування заяви для зміни банківської картки</h1>
+        <h2>Змінити картку можуть лише студенти 2, 3, 4 та 6 курсів.</h2>
+        <span class="bank_selection">Банк, в якому плануєш отримувати стипендію в наступному місяці:</span><br/>
+        <!-- Невпорядкований список радіо-баттонів зі списком -->
+        <span class="name">Стать</span>
+        <div class="input-group">
+            <input type="radio" name="gender" value="male" id="male">
+            <label for="male"></label><i class="fas fa-mars"></i>
+            <input type="radio" name="gender" value="female" id="female">
+            <label for="male"></label><i class="fas fa-venus"></i>
+        </div>
+		<span class="name">ПІБ:</span>
+		<input type="text" placeholder="Шевченко Іван Тарасович" id="full_name" maxlength="70">
+        <br/>
+		<span class="name">ОКР:</span>
+		<div> 
+            <table>
+			<tr><td width="80"><input id="chkStudent" name="chkOKR" value="студента" type="radio"> 
+            <label for="student"> 
+                <span></span>Студент
+            </label></td>
+			<td width="100"><input id="chkStudent" name="chkOKR" value="студентки" type="radio"> 
+            <label for="student"> 
+                <span></span> Студентка
+            </label> </td></tr>	</table>		
+        </div>
+
+		<div> 
+            <table>
+			<tr><td width="80"><input id="chkPostgraduate" name="chkOKR" value="аспіранта" type="radio"> 
+            <label for="student"> 
+                <span></span>Аспірант
+            </label></td>
+			<td width="100"><input id="chkPostgraduate" name="chkOKR" value="аспірантки" type="radio"> 
+            <label for="student"> 
+                <span></span> Аспірантка
+            </label> </td></tr> </table>				
+        </div>	
+
+		<ul>
+            <div id="container">
+                <div id="complete"></div>
+                <input type="text" id="department" placeholder="Факультет/інститут">
+            </div>
+            
+            <li><input type="text" placeholder="Шифр групи" id="group" ></li>
+            <li><input type="text" placeholder="Телефон (з +380)" id="phone_number" ></li>
+            <li><input type="text" placeholder="Ідентифікаційний номер (РНОКПП)" id="tax_number" ></li>
+            <li><input type="text" placeholder="IBAN" id="iban_number"></li>
+        </ul>
+        <div class="application">
+            <button onclick="onDownload()" id="create_application"><i class="fas fa-file-pdf"></i>Завантажити заяву</button>
+             або надіслати її у <a href="https://def.kpi.ua/vrzs"> відділ із розрахунків зарплат та стипендій</a> за допомогою 
+            <button name="copy-to-clipboard" onclick="return copyToClipboard('olga_sereduk@ukr.net')" class="popover-buttons"><img src="content-copy.svg" alt="Копіювати"></button>
+        </div>
+    </body>
+</html>			
+
+		
