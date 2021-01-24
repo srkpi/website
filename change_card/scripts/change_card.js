@@ -78,6 +78,7 @@ function getCourseNumber(cohort) {
 	function removeCharacterAtIndex(value, index) {
 		return value.substring(0, index) + value.substring(index + 1);
 	}
+	cohort = cohort.toLowerCase();
 	// Отримання поточного року та місяця для визначення номеру курсу.
 	var last_number_current_year = (new Date().getFullYear()) % 10;
   	var current_month = new Date().getMonth();
