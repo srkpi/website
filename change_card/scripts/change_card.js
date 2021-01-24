@@ -24,19 +24,23 @@ function ValidPhone() {
 // Формування POST запиту в Google Форму. https://github.com/RGZorzo/Googleformpost/blob/master/script.js
 
 function onDownload() {
-    var full_name = $('#full_name').val();
-	
-    var bank = $("input[name='chkBank']:checked").val();
-    var OKR = $("input[name='chkOKR']:checked").val();
-    var cohort = $("#group").val();
-    var departament=$("#department").val();
-    var phone_number = $("#phone_number").val();
-    var tax_number = $("#tax_number").val();
-    var iban_number = $("#iban_number").val();
-		if (bank=="ПриватБанк")
-		{
-			iban_number=tax_number;
-		}
+	var cohort = $("#group").val().toLowerCase();
+	if (typeof cohort[0] == 'string' && typeof cohort[1] == 'string' && isNaN(Number(cohort[3])) != true && isNaN(Number(cohort[4])) != true){
+		cohort = cohort.substring(0, 2).toUpperCase() + cohort.substring(2);
+		console.log(cohort);
+		var full_name = $('#full_name').val();
+    	var bank = $("input[name='chkBank']:checked").val();
+    	var OKR = $("input[name='chkOKR']:checked").val();
+    	var departament = $("#department").val();
+    	var phone_number = $("#phone_number").val();
+    	var tax_number = $("#tax_number").val();
+    	var iban_number = bank == "ПриватБанк" ? tax_number : $("#iban_number").val();
+		create_application(full_name, bank, OKR, cohort,departament, phone_number, tax_number, iban_number);
+	}
+	else{
+		alert("Error");
+	}
+
     // $.post('change_card.php', {
         // full_name:full_name, 
         // bank: bank,
@@ -47,8 +51,7 @@ function onDownload() {
         // iban_number,
         // }, 
 
-	 //ValidPhone();
-	create_application(full_name, bank, OKR, cohort,departament, phone_number, tax_number, iban_number);
+	 // ValidPhone();	
 }
 
 // Копіювання e-mail в буфер обміну.
@@ -77,9 +80,7 @@ function getCourseNumber(cohort) {
 	// https://stackoverflow.com/a/42089547
 	function removeCharacterAtIndex(value, index) {
 		return value.substring(0, index) + value.substring(index + 1);
-	}
-	cohort = cohort.toLowerCase();
-	// Отримання поточного року та місяця для визначення номеру курсу.
+	}	// Отримання поточного року та місяця для визначення номеру курсу.
 	var last_number_current_year = (new Date().getFullYear()) % 10;
   	var current_month = new Date().getMonth();
 
