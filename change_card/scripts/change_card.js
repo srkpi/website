@@ -21,6 +21,8 @@ function ValidPhone() {
     return valid;
 }  
 
+// Формування POST запиту в Google Форму. https://github.com/RGZorzo/Googleformpost/blob/master/script.js
+
 function onDownload() {
     var full_name = $('#full_name').val();
 	
@@ -49,7 +51,7 @@ function onDownload() {
 	create_application(full_name, bank, OKR, cohort,departament, phone_number, tax_number, iban_number);
 }
 
-// Copy email to clipboard.
+// Копіювання e-mail в буфер обміну.
 function copyToClipboard(text) {
 	var dummy = document.createElement("textarea");
 	document.body.appendChild(dummy);
@@ -70,8 +72,6 @@ function createJSON(gender, OKR, cohort, department) {
 	   +'}';
 	// Формування JSON під аспірантства.
 }
-
-
 
 function getCourseNumber(cohort) {
 	// https://stackoverflow.com/a/42089547
