@@ -29,7 +29,7 @@ function onDownload() {
     var bank = $("input[name='chkBank']:checked").val();
     var OKR = $("input[name='chkOKR']:checked").val();
     var cohort = $("#group").val();
-	var departament=$("#department").val();
+    var departament=$("#department").val();
     var phone_number = $("#phone_number").val();
     var tax_number = $("#tax_number").val();
     var iban_number = $("#iban_number").val();
@@ -78,53 +78,42 @@ function getCourseNumber(cohort) {
 	function removeCharacterAtIndex(value, index) {
 		return value.substring(0, index) + value.substring(index + 1);
 	}
+	// Отримання поточного року та місяця для визначення номеру курсу.
+	var last_number_current_year = (new Date().getFullYear()) % 10;
+  	var current_month = new Date().getMonth();
 
-	// Отримання поточного року для визначення номеру курсу.
-	var current_year = new Date().getFullYear();
-
-	// Якщо в групі є «п» (заповнює прискоренник), то цю букву потрібно видалити.
-	if (cohort.chartAt(3) == "п") {
-		var filtered_group_name = removeCharacterAtIndex(input, 3);
+  	// Якщо в шифрі групи є «п» (заповнює прискоренник), то видаляємо цю букву.
+	if (cohort[3] == 'п') {
+		cohort = removeCharacterAtIndex(cohort, 3);
 	}
-	else {
-
-	}
-
-	/* Якщо  */
+	/* Якщо номер з шифру групи більше, ніж остання цифра поточного року,
+	то рік потрібно збільшити на 10 */
+  	if (Number(cohort[3]) > last_number_current_year){
+    		last_number_current_year += 10;
+  	}
+	
+	/* Номер курсу - це різниця останньої цифри року та першої цифри шифру групи */
+  	var course_number = last_number_current_year - Number(cohort[3]);
+	
+	/* Якщо поточний місяць входить в діапазон липень-грудень, то номер
+	курсу потрібно збільшити на 1 */
+  	if (current_month >= 6){
+    		course_number++;
+  	}
+	/* Якщо шифр групи відповідає магістратурі, то номер курсу перевести
+	з бакалаврату на магістратуру (додати 4 до номеру курсу) */
 	if (cohort.includes('мн') || cohort.includes('мп')) {
-		/* 1 курс магістратури.
-		Якщо перша цифра в номері групи така ж, як і остання цифра в номері року, 
-		то функція повертає 5 курс */
-		if (cohort.charAt(3) == current_year.charAt(3)) {
-			course_number = 5;
-			return course_number;
-		}
-
-		/* 2 курс магістратури.
-		 */
-		/*
-		if (() = 2) {
-			// аргументи повинні рахуватись по модулю
-			course_number = 6;
-			return course_number;
-		}*/
+		course_number += 4;
 	}
 
 	return course_number;
 }
 
 function create_application(full_name, bank, OKR, cohort, departament,phone_number, tax_number, iban_number) { 
-	const str=OKR+" групи "+cohort+" "+departament;
-	var HText=str.length;
-	var HFName=full_name.length;
-	if (HText>HFName)
-	{
-		var HText123=564-8*HText;
-	}
-	else 
-	{
-		var HText123=564-8.5*HFName;
-	}
+	const str = OKR + " групи " + cohort + " " + departament;
+	var HText = str.length;
+	var HFName = full_name.length;
+	var HText123 = 564 - (HText > HFName ? 8 * HText : 8.5 * HFName);
 
 	console.log(`${HText} ${HFName}  ${HText123}`);
 	var docInfo = {
