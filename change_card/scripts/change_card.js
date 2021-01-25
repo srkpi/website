@@ -304,22 +304,22 @@ function create_application(full_name, bank, OKR, cohort, departament,phone_numb
 	
 
 
-pdfMake.fonts = {
-   /* Arial: {
-     normal: 'fonts/ArialNarrow.ttf',
-     bold: 'fonts/ArialNarrow-Bold.ttf',
-     italics: 'fonts/ArialNarrow-Italic.ttf',
-     bolditalics: 'fonts/ArialNarrow-BoldItalic.ttf'
-   } */
+	pdfMake.fonts = {
+    /* Arial: {
+    	normal: 'fonts/ArialNarrow.ttf',
+    	bold: 'fonts/ArialNarrow-Bold.ttf',
+    	italics: 'fonts/ArialNarrow-Italic.ttf',
+    	bolditalics: 'fonts/ArialNarrow-BoldItalic.ttf'
+    } */
 
    
-   Roboto: {
-     normal: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/fonts/Roboto/Roboto-Regular.ttf',
-     bold: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/fonts/Roboto/Roboto-Medium.ttf',
-     italics: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/fonts/Roboto/Roboto-Italic.ttf',
-     bolditalics: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/fonts/Roboto/Roboto-MediumItalic.ttf'
-   },
-}
+    	Roboto: {
+    		normal: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/fonts/Roboto/Roboto-Regular.ttf',
+    		bold: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/fonts/Roboto/Roboto-Medium.ttf',
+    		italics: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/fonts/Roboto/Roboto-Italic.ttf',
+    		bolditalics: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/fonts/Roboto/Roboto-MediumItalic.ttf'
+    	},
+	}
 
-pdfMake.createPdf(docInfo,null,fonts).download('Заява на зміну картки.pdf');
+	pdfMake.createPdf(docInfo,null,fonts).download('Заява на зміну картки.pdf');
 }
