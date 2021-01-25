@@ -9,6 +9,8 @@ var bank_name = null;
 var course_number = null;
 // Змінна для збереження стану того, з якого факультету/інституту заповнюють форму.
 var departament_name = null;
+// Змінна для збереження назви групи.
+var cohort = null;
 
 function ValidPhone() {
     var re = /^\d[\d\(\)\ -]{4,14}\d$/;
@@ -21,22 +23,59 @@ function ValidPhone() {
     return valid;
 }  
 
+function correctInput(){
+	var full_name = $('#full_name').val();
+    var bank = $("input[name='chkBank']:checked").val();
+    var OKR = $("input[name='chkOKR']:checked").val();
+    var departament = $("#department").val();
+    var phone_number = $("#phone_number").val();
+    var tax_number = $("#tax_number").val();
+    var iban_number = bank == "ПриватБанк" ? tax_number : $("#iban_number").val();
+	create_application(full_name, bank, OKR, cohort, departament, phone_number, tax_number, iban_number);
+}
+
 // Формування POST запиту в Google Форму. https://github.com/RGZorzo/Googleformpost/blob/master/script.js
 
 function onDownload() {
-    var full_name = $('#full_name').val();
-	
-    var bank = $("input[name='chkBank']:checked").val();
-    var OKR = $("input[name='chkOKR']:checked").val();
-    var cohort = $("#group").val();
-	var departament=$("#department").val();
-    var phone_number = $("#phone_number").val();
-    var tax_number = $("#tax_number").val();
-    var iban_number = $("#iban_number").val();
-		if (bank=="ПриватБанк")
-		{
-			iban_number=tax_number;
+	var ukr_letters = ['А','Б','В','Г','Ґ','Д','Е','Є','Ж','З','И','І','Ї','Й','К','Л','М','Н','О','П','Р','С','Т','У','Ф','Х','Ц','Ч','Ш','Щ','Ь','Ю','Я'];
+	cohort = $("#group").val().toLowerCase();
+	cohort = cohort.substring(0, 2).toUpperCase() + cohort.substring(2);
+	console.log(cohort);
+	console.log(isNaN(Number(cohort.substring(3, 5))));
+	if (cohort.includes('мн') || cohort.includes('мп')){
+		if (cohort.length == 7 
+			&& ukr_letters.includes(cohort[0]) 
+			&& ukr_letters.includes(cohort[1])
+			&& cohort[2] == '-' 
+			&& isNaN(Number(cohort.substring(3, 5))) != true 
+			&& getCourseNumber(cohort) <= 6) {
+			correctInput();
+		} else alert("Error");
+
+	} else{
+		if (cohort.includes('п')){
+			if (cohort.length == 6 
+				&& ukr_letters.includes(cohort[0])
+				&& ukr_letters.includes(cohort[1])
+				&& cohort[2] == '-' 
+				&& cohort[3] == 'п'
+				&& isNaN(Number(cohort.substring(4, 6))) != true 
+				&& getCourseNumber(cohort) <= 4) {
+				correctInput();
+			} else alert("Error");
+		} else{
+			if (cohort.length == 5 
+				&& ukr_letters.includes(cohort[0])
+				&& ukr_letters.includes(cohort[1])
+				&& cohort[2] == '-' 
+				&& isNaN(Number(cohort.substring(3, 5))) != true 
+				&& getCourseNumber(cohort) <= 4) {
+				correctInput();			
+			} else alert("Error");
 		}
+	}
+}
+
     // $.post('change_card.php', {
         // full_name:full_name, 
         // bank: bank,
@@ -47,9 +86,7 @@ function onDownload() {
         // iban_number,
         // }, 
 
-	 //ValidPhone();
-	create_application(full_name, bank, OKR, cohort,departament, phone_number, tax_number, iban_number);
-}
+	 // ValidPhone();	
 
 // Копіювання e-mail в буфер обміну.
 function copyToClipboard(text) {
@@ -77,54 +114,42 @@ function getCourseNumber(cohort) {
 	// https://stackoverflow.com/a/42089547
 	function removeCharacterAtIndex(value, index) {
 		return value.substring(0, index) + value.substring(index + 1);
+	}	// Отримання поточного року та місяця для визначення номеру курсу.
+	var last_number_current_year = (new Date().getFullYear()) % 10;
+  	var current_month = new Date().getMonth();
+
+  	// Якщо в шифрі групи є «п» (заповнює прискоренник), то видаляємо цю букву.
+	if (cohort[3] == 'п') {
+		cohort = removeCharacterAtIndex(cohort, 3);
 	}
-
-	// Отримання поточного року для визначення номеру курсу.
-	var current_year = new Date().getFullYear();
-
-	// Якщо в групі є «п» (заповнює прискоренник), то цю букву потрібно видалити.
-	if (cohort.chartAt(3) == "п") {
-		var filtered_group_name = removeCharacterAtIndex(input, 3);
-	}
-	else {
-
-	}
-
-	/* Якщо  */
+	/* Якщо номер з шифру групи більше, ніж остання цифра поточного року,
+	то рік потрібно збільшити на 10 */
+  	if (Number(cohort[3]) > last_number_current_year){
+    		last_number_current_year += 10;
+  	}
+	
+	/* Номер курсу - це різниця останньої цифри року та першої цифри шифру групи */
+  	var course_number = last_number_current_year - Number(cohort[3]);
+	
+	/* Якщо поточний місяць входить в діапазон липень-грудень, то номер
+	курсу потрібно збільшити на 1 */
+  	if (current_month >= 6){
+    		course_number++;
+  	}
+	/* Якщо шифр групи відповідає магістратурі, то номер курсу перевести
+	з бакалаврату на магістратуру (додати 4 до номеру курсу) */
 	if (cohort.includes('мн') || cohort.includes('мп')) {
-		/* 1 курс магістратури.
-		Якщо перша цифра в номері групи така ж, як і остання цифра в номері року, 
-		то функція повертає 5 курс */
-		if (cohort.charAt(3) == current_year.charAt(3)) {
-			course_number = 5;
-			return course_number;
-		}
-
-		/* 2 курс магістратури.
-		 */
-		/*
-		if (() = 2) {
-			// аргументи повинні рахуватись по модулю
-			course_number = 6;
-			return course_number;
-		}*/
+		course_number += 4;
 	}
 
 	return course_number;
 }
 
 function create_application(full_name, bank, OKR, cohort, departament,phone_number, tax_number, iban_number) { 
-	const str=OKR+" групи "+cohort+" "+departament;
-	var HText=str.length;
-	var HFName=full_name.length;
-	if (HText>HFName)
-	{
-		var HText123=564-8*HText;
-	}
-	else 
-	{
-		var HText123=564-8.5*HFName;
-	}
+	const str = OKR + " групи " + cohort + " " + departament;
+	var HText = str.length;
+	var HFName = full_name.length;
+	var HText123 = 564 - (HText > HFName ? 8 * HText : 8.5 * HFName);
 
 	console.log(`${HText} ${HFName}  ${HText123}`);
 	var docInfo = {
@@ -279,22 +304,22 @@ function create_application(full_name, bank, OKR, cohort, departament,phone_numb
 	
 
 
-pdfMake.fonts = {
-   /* Arial: {
-     normal: 'fonts/ArialNarrow.ttf',
-     bold: 'fonts/ArialNarrow-Bold.ttf',
-     italics: 'fonts/ArialNarrow-Italic.ttf',
-     bolditalics: 'fonts/ArialNarrow-BoldItalic.ttf'
-   } */
+	pdfMake.fonts = {
+    /* Arial: {
+    	normal: 'fonts/ArialNarrow.ttf',
+    	bold: 'fonts/ArialNarrow-Bold.ttf',
+    	italics: 'fonts/ArialNarrow-Italic.ttf',
+    	bolditalics: 'fonts/ArialNarrow-BoldItalic.ttf'
+    } */
 
    
-   Roboto: {
-     normal: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/fonts/Roboto/Roboto-Regular.ttf',
-     bold: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/fonts/Roboto/Roboto-Medium.ttf',
-     italics: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/fonts/Roboto/Roboto-Italic.ttf',
-     bolditalics: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/fonts/Roboto/Roboto-MediumItalic.ttf'
-   },
-}
+    	Roboto: {
+    		normal: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/fonts/Roboto/Roboto-Regular.ttf',
+    		bold: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/fonts/Roboto/Roboto-Medium.ttf',
+    		italics: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/fonts/Roboto/Roboto-Italic.ttf',
+    		bolditalics: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/fonts/Roboto/Roboto-MediumItalic.ttf'
+    	},
+	}
 
-pdfMake.createPdf(docInfo,null,fonts).download('Заява на зміну картки.pdf');
+	pdfMake.createPdf(docInfo,null,fonts).download('Заява на зміну картки.pdf');
 }
