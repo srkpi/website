@@ -1,134 +1,125 @@
-var recipient_preposition="";
-var recipient_position="";
-var recipient_name="";
-var recipient_preposition1="";
-var recipient_position1="";
-var recipient_name1="";
-var univercity=""
-var univercity1=""
-var HText=0;
-var text11="";
-var text12="";
-var text13="";
-var text14="";
-var text15="";
-var text16="";
-var text17="";
-var text171="";
-var text18="";
-var text181="";
-var text19="";
+var recipient_preposition = "";
+var recipient_position = "";
+var recipient_name = "";
+var recipient_preposition1 = "";
+var recipient_position1 = "";
+var recipient_name1 = "";
+var univercity = ""
+var univercity1 = ""
+var HText = 0;
+var text11 = "";
+var text12 = "";
+var text13 = "";
+var text14 = "";
+var text15 = "";
+var text16 = "";
+var text17 = "";
+var text171 = "";
+var text18 = "";
+var text181 = "";
+var text19 = "";
 
-function Main (form1, form2,form3) {
+function Main(form1, form2,form3) {
 	KomuSluzhebka(form1);
 	TextSluzhebki(form2);
 	Pidpysant(form3);
 }
 
 function KomuSluzhebka(form){
-switch (form.ToWhom.value) {
-  case "VK":
-	recipient_preposition="Проректору";
-	recipient_position="з адміністративної роботи";
-	univercity="КПІ ім. Ігоря Сікорського"
-	recipient_name="Вадиму КОНДРАТЮКУ"
-	HText=360
-    break;
-  case "NS":
- 	recipient_preposition="Проректору";
-	recipient_position="з навчально-виховної роботи";
-	univercity="КПІ ім. Ігоря Сікорського"
-	recipient_name="Наталії СЕМІНСЬКІЙ"
-	HText=340
-    break;
-  case "VKNS":
-	recipient_preposition="Проректору";
-	recipient_position="з адміністративної роботи";
-	univercity="КПІ ім. Ігоря Сікорського"
-	recipient_name="Вадиму КОНДРАТЮКУ"
- 	recipient_preposition1="Проректору";
-	recipient_position1="з навчально-виховної роботи";
-	univercity1="КПІ ім. Ігоря Сікорського"
-	recipient_name1="Наталії СЕМІНСЬКІЙ"
-	HText=340
-    break;
-  case "LS":
-  	recipient_position="Головному бухгалтеру";
-	univercity="КПІ ім. Ігоря Сікорського"
-	recipient_name="Людмилі СУББОТІНІЙ"
-	HText=370
-    break;
-  default:
-    alert( "Помилкове значенння!" );
-}
-document.getElementById("rpp").innerHTML=recipient_preposition;
-document.getElementById("rp").innerHTML=recipient_position;
-document.getElementById("un").innerHTML=univercity;
-document.getElementById("rn").innerHTML=recipient_name;
-document.getElementById("rpp1").innerHTML=recipient_preposition1;
-document.getElementById("rp1").innerHTML=recipient_position1;
-document.getElementById("un1").innerHTML=univercity1;
-document.getElementById("rn1").innerHTML = recipient_name1;
+	switch (form.ToWhom.value) {
+  		case "VK":
+			recipient_preposition = "Проректору";
+			recipient_position = "з адміністративної роботи";
+			univercity = "КПІ ім. Ігоря Сікорського";
+			recipient_name = "Вадиму КОНДРАТЮКУ";
+			HText = 360;
+    		break;
+  		case "NS":
+ 			recipient_preposition = "Проректору";
+			recipient_position = "з навчально-виховної роботи";
+			univercity = "КПІ ім. Ігоря Сікорського";
+			recipient_name = "Наталії СЕМІНСЬКІЙ";
+			HText = 340;
+    		break;
+  		case "VKNS":
+			recipient_preposition = "Проректору";
+			recipient_position = "з адміністративної роботи";
+			univercity = "КПІ ім. Ігоря Сікорського";
+			recipient_name = "Вадиму КОНДРАТЮКУ";
+ 			recipient_preposition1 = "Проректору";
+			recipient_position1 = "з навчально-виховної роботи";
+			univercity1 = "КПІ ім. Ігоря Сікорського";
+			recipient_name1 = "Наталії СЕМІНСЬКІЙ";
+			HText = 340;
+    		break;
+  		case "LS":
+  			recipient_position = "Головному бухгалтеру";
+			univercity = "КПІ ім. Ігоря Сікорського";
+			recipient_name = "Людмилі СУББОТІНІЙ";
+			HText = 370;
+    		break;
+  		default:
+    		alert( "Помилкове значенння!" );
+	}
+	document.getElementById("rpp").innerHTML = recipient_preposition;
+	document.getElementById("rp").innerHTML = recipient_position;
+	document.getElementById("un").innerHTML = univercity;
+	document.getElementById("rn").innerHTML = recipient_name;
+	document.getElementById("rpp1").innerHTML = recipient_preposition1;
+	document.getElementById("rp1").innerHTML = recipient_position1;
+	document.getElementById("un1").innerHTML = univercity1;
+	document.getElementById("rn1").innerHTML = recipient_name1;
 }
 
 function TextSluzhebki(form){
-switch (form.VybirShablony.value) {
-  case "DdP":
-	text11="Студентська рада КПІ ім. Ігоря Сікорського просить вас дозволити доступ ";
-	text12=" до аудиторії "+form.aud.value+" "+form.korpus.value+" корпусу в період з "+form.time_from.value+" до "+form.time_to.value+" "+form.date.value+" у зв'язку з "+form.pidstava1.value;
+	switch (form.VybirShablony.value) {
+  		case "DdP":
+			text11 = "Студентська рада КПІ ім. Ігоря Сікорського просить вас дозволити доступ ";
+			text12 = " до аудиторії " + form.aud.value + " " + form.korpus.value + " корпусу в період з " + form.time_from.value + 
+			" до " + form.time_to.value + " " + form.date.value + " у зв'язку з " + form.pidstava1.value;
 	
-	if(form.Karantyn.value=="Yes")
-		{
-			text13="Кількість осіб, що будуть знаходитись в аудиторії - до "+ form.people.value +" осіб. Перебування";
-			text14=" осіб буде проводитись з дотриманням "+"епідеміологічних та карантинних норм.";
-		}
-	else
-		{
-			text13="";
-			text14="";
-		}
-	
-	text15="Контактні дані:";
-	text16=form.ContactName.value+" / "+form.ContactTel.value+" / "+form.ContactOther.value
-    break;
-  }
-  default:
-    alert( "Помилкове значенння!" );
-}
-document.getElementById("t11").innerHTML=text11;
-document.getElementById("t12").innerHTML=text12;
-document.getElementById("t13").innerHTML=text13;
-document.getElementById("t14").innerHTML=text14;
-document.getElementById("t15").innerHTML=text15;
-document.getElementById("t16").innerHTML=text16;
+			if(form.Karantyn.value == "Yes"){
+				text13 = "Кількість осіб, що будуть знаходитись в аудиторії - до " + form.people.value + " осіб. Перебування";
+				text14 = " осіб буде проводитись з дотриманням " + "епідеміологічних та карантинних норм.";
+			} else{
+				text13 = "";
+				text14 = "";
+			}
+		text15 = "Контактні дані:";
+		text16 = form.ContactName.value + " / " + form.ContactTel.value + " / " + form.ContactOther.value
+    	break;
+  
+  		default:
+   			alert( "Помилкове значенння!" );
+	}
+	document.getElementById("t11").innerHTML = text11;
+	document.getElementById("t12").innerHTML = text12;
+	document.getElementById("t13").innerHTML = text13;
+	document.getElementById("t14").innerHTML = text14;
+	document.getElementById("t15").innerHTML = text15;
+	document.getElementById("t16").innerHTML = text16;
 }
 
 function Pidpysant(form){
-	text19="З повагою";
-if (form.Pidpys1Check.value==="1")
-	{
-		text17=form.Pidpys1.value;
-		text171=form.Pidpys1Name.value;
+	text19 = "З повагою";
+	if (form.Pidpys1Check.value === "1"){
+		text17 = form.Pidpys1.value;
+		text171 = form.Pidpys1Name.value;
 	}
 	
-	if (form.Pidpys2Check.value==="2")
-	{
-		text18=form.Pidpys2.value;
-		text181=form.Pidpys2Name.value;
-	}
-	else
-	{
-		text18="";
-		text181="";
+	if (form.Pidpys2Check.value === "2"){
+		text18 = form.Pidpys2.value;
+		text181 = form.Pidpys2Name.value;
+	} else {
+		text18 = "";
+		text181 = "";
 	}
 
-
-document.getElementById("t17").innerHTML=text17;
-document.getElementById("t171").innerHTML=text171;
-document.getElementById("t18").innerHTML=text18;
-document.getElementById("t181").innerHTML=text181;
-document.getElementById("t19").innerHTML=text19;
-
+	document.getElementById("t17").innerHTML = text17;
+	document.getElementById("t171").innerHTML = text171;
+	document.getElementById("t18").innerHTML = text18;
+	document.getElementById("t181").innerHTML= text181;
+	document.getElementById("t19").innerHTML = text19;
 }
 
 
@@ -437,20 +428,20 @@ var docInfo = {
 
 
 pdfMake.fonts = {
-   /* Arial: {
-     normal: 'fonts/ArialNarrow.ttf',
-     bold: 'fonts/ArialNarrow-Bold.ttf',
-     italics: 'fonts/ArialNarrow-Italic.ttf',
-     bolditalics: 'fonts/ArialNarrow-BoldItalic.ttf'
-   } */
+   	/* Arial: {
+    	normal: 'fonts/ArialNarrow.ttf',
+    	bold: 'fonts/ArialNarrow-Bold.ttf',
+    	italics: 'fonts/ArialNarrow-Italic.ttf',
+    	bolditalics: 'fonts/ArialNarrow-BoldItalic.ttf'
+   	} */
 
    
-   Roboto: {
-     normal: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/fonts/Roboto/Roboto-Regular.ttf',
-     bold: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/fonts/Roboto/Roboto-Medium.ttf',
-     italics: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/fonts/Roboto/Roboto-Italic.ttf',
-     bolditalics: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/fonts/Roboto/Roboto-MediumItalic.ttf'
-   },
+   	Roboto: {
+    	normal: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/fonts/Roboto/Roboto-Regular.ttf',
+    	bold: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/fonts/Roboto/Roboto-Medium.ttf',
+    	italics: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/fonts/Roboto/Roboto-Italic.ttf',
+    	bolditalics: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/fonts/Roboto/Roboto-MediumItalic.ttf'
+   	},
 }
 
 pdfMake.createPdf(docInfo,null,fonts).download('Службова записка.pdf');
