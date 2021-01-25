@@ -9,6 +9,8 @@ var bank_name = null;
 var course_number = null;
 // Змінна для збереження стану того, з якого факультету/інституту заповнюють форму.
 var departament_name = null;
+// Змінна для збереження назви групи.
+var cohort = null;
 
 function ValidPhone() {
     var re = /^\d[\d\(\)\ -]{4,14}\d$/;
@@ -21,25 +23,58 @@ function ValidPhone() {
     return valid;
 }  
 
+function correctInput(){
+	var full_name = $('#full_name').val();
+    var bank = $("input[name='chkBank']:checked").val();
+    var OKR = $("input[name='chkOKR']:checked").val();
+    var departament = $("#department").val();
+    var phone_number = $("#phone_number").val();
+    var tax_number = $("#tax_number").val();
+    var iban_number = bank == "ПриватБанк" ? tax_number : $("#iban_number").val();
+	create_application(full_name, bank, OKR, cohort, departament, phone_number, tax_number, iban_number);
+}
+
 // Формування POST запиту в Google Форму. https://github.com/RGZorzo/Googleformpost/blob/master/script.js
 
 function onDownload() {
-	var cohort = $("#group").val().toLowerCase();
-	if (typeof cohort[0] == 'string' && typeof cohort[1] == 'string' && isNaN(Number(cohort[3])) != true && isNaN(Number(cohort[4])) != true){
-		cohort = cohort.substring(0, 2).toUpperCase() + cohort.substring(2);
-		console.log(cohort);
-		var full_name = $('#full_name').val();
-    	var bank = $("input[name='chkBank']:checked").val();
-    	var OKR = $("input[name='chkOKR']:checked").val();
-    	var departament = $("#department").val();
-    	var phone_number = $("#phone_number").val();
-    	var tax_number = $("#tax_number").val();
-    	var iban_number = bank == "ПриватБанк" ? tax_number : $("#iban_number").val();
-		create_application(full_name, bank, OKR, cohort,departament, phone_number, tax_number, iban_number);
+	var ukr_letters = ['А','Б','В','Г','Ґ','Д','Е','Є','Ж','З','И','І','Ї','Й','К','Л','М','Н','О','П','Р','С','Т','У','Ф','Х','Ц','Ч','Ш','Щ','Ь','Ю','Я'];
+	cohort = $("#group").val().toLowerCase();
+	cohort = cohort.substring(0, 2).toUpperCase() + cohort.substring(2);
+	console.log(cohort);
+	console.log(isNaN(Number(cohort.substring(3, 5))));
+	if (cohort.includes('мн') || cohort.includes('мп')){
+		if (cohort.length == 7 
+			&& ukr_letters.includes(cohort[0]) 
+			&& ukr_letters.includes(cohort[1])
+			&& cohort[2] == '-' 
+			&& isNaN(Number(cohort.substring(3, 5))) != true 
+			&& getCourseNumber(cohort) <= 6) {
+			correctInput();
+		} else alert("Error");
+
+	} else{
+		if (cohort.includes('п')){
+			if (cohort.length == 6 
+				&& ukr_letters.includes(cohort[0])
+				&& ukr_letters.includes(cohort[1])
+				&& cohort[2] == '-' 
+				&& cohort[3] == 'п'
+				&& isNaN(Number(cohort.substring(4, 6))) != true 
+				&& getCourseNumber(cohort) <= 4) {
+				correctInput();
+			} else alert("Error");
+		} else{
+			if (cohort.length == 5 
+				&& ukr_letters.includes(cohort[0])
+				&& ukr_letters.includes(cohort[1])
+				&& cohort[2] == '-' 
+				&& isNaN(Number(cohort.substring(3, 5))) != true 
+				&& getCourseNumber(cohort) <= 4) {
+				correctInput();			
+			} else alert("Error");
+		}
 	}
-	else{
-		alert("Error");
-	}
+}
 
     // $.post('change_card.php', {
         // full_name:full_name, 
@@ -52,7 +87,6 @@ function onDownload() {
         // }, 
 
 	 // ValidPhone();	
-}
 
 // Копіювання e-mail в буфер обміну.
 function copyToClipboard(text) {
