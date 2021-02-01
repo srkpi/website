@@ -48,15 +48,21 @@
             <label for="surname_checkbox">По-батькові відсутнє</label>
         </div>
 
-        <form>
-            <div class="study_status"> 
-                <input type="radio" id="option-one" name="selector">
-                <label for="option-one">Студент</label>
-                
-                <input type="radio" id="option-two" name="selector">
-                <label for="option-two">Аспірант</label>
-            </div>
-        </form>
+        <div class="gender_status"> 
+            <input type="radio" id="male_status" name="gender_status_radio">
+            <label for="male_status"><i class="fas fa-mars"></i></label>
+            
+            <input type="radio" id="female_status" name="gender_status_radio">
+            <label for="female_status"><i class="fas fa-venus"></i></label>
+        </div>
+
+        <div class="study_status"> 
+            <input type="radio" id="student_status" name="study_status_radio">
+            <label for="student_status">Студент</label>
+            
+            <input type="radio" id="aspirant_status" name="study_status_radio">
+            <label for="aspirant_status">Аспірант</label>
+        </div>
 
         <input type="text" placeholder="Ідентифікаційний код" id="first_name" maxlength="70">
         <input type="text" placeholder="IBAN рахунок" id="last_name" maxlength="70">	

@@ -71,12 +71,6 @@ h1 {
     margin-top: 0px;
 }
 
-.study_status input[type=radio] {
-    position: absolute;
-    visibility: hidden;
-    display: none;
-}
-
 .study_status {
     border: solid 3px #1329e6;
     color:#fff;
@@ -86,9 +80,37 @@ h1 {
     overflow: hidden;
 }
 
+.gender_status {
+    border: solid 3px #1329e6;
+    color:#fff;
+    display: inline-block;
+    margin: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.study_status input[type=radio] {
+    position: absolute;
+    visibility: hidden;
+    display: none;
+}
+
+.gender_status input[type=radio] {
+    position: absolute;
+    visibility: hidden;
+    display: none;
+}
+
 .study_status label {
     color: #1329e6;
-    /* color: lighten(#1329e6,40%); */
+    display: inline-block;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 5px 20px;
+}
+
+.gender_status label {
+    color: #1329e6;
     display: inline-block;
     cursor: pointer;
     font-weight: bold;
@@ -100,8 +122,17 @@ h1 {
     color: #ffffff;
 }
 
+.gender_status input[type=radio]:checked + label {
+    background:#1329e6;
+    color: #ffffff;
+}
+
 .study_status label + input[type=radio] + label {
-    border-left: solid 3px lighten(#1329e6,60%);
+    border-left: solid 4px lighten(#1329e6,60%);
+}
+
+.gender_status label + input[type=radio] + label {
+    border-left: solid 4px lighten(#1329e6,60%);
 }
 
 .bank_selection {
