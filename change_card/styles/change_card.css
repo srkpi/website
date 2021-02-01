@@ -71,10 +71,37 @@ h1 {
     margin-top: 0px;
 }
 
-h2 {
-    font-family: 'SF UI Display Bold';
-    font-size: 1.5em;
-    margin-top: 0px;
+.study_status input[type=radio] {
+    position: absolute;
+    visibility: hidden;
+    display: none;
+}
+
+.study_status {
+    border: solid 3px #1329e6;
+    color:#fff;
+    display: inline-block;
+    margin: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.study_status label {
+    color: #1329e6;
+    /* color: lighten(#1329e6,40%); */
+    display: inline-block;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 5px 20px;
+}
+  
+.study_status input[type=radio]:checked + label {
+    background:#1329e6;
+    color: #ffffff;
+}
+
+.study_status label + input[type=radio] + label {
+    border-left: solid 3px lighten(#1329e6,60%);
 }
 
 .bank_selection {
@@ -115,7 +142,7 @@ input[type="radio"] + label {
 }
   
 #create_application:hover {
-    background-color: #0e0f0f;
+    background-color: #1329e6;
     box-shadow: 0px 15px 20px rgba(25, 26, 25, 0.4);
     color: #fff;
 }
