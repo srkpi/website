@@ -24,11 +24,11 @@ function checkBox(){
 function checkSex() {
 	var sex = $('input[name=gender_status_radio]:checked').val();
 	if(sex === 'Male'){
-		document.getElementById('aspirant_label').innerHTML = 'Аспірант';
-		document.getElementById('student_label').innerHTML = 'Студент';
+		document.getElementById('aspirant_label').innerHTML = 'аспірант';
+		document.getElementById('student_label').innerHTML = 'студент';
 	} else {
-		document.getElementById('aspirant_label').innerHTML = 'Аспірантка';
-		document.getElementById('student_label').innerHTML = 'Студентка';
+		document.getElementById('aspirant_label').innerHTML = 'аспірантка';
+		document.getElementById('student_label').innerHTML = 'студентка';
 	}
 }
 
