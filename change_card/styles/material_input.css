@@ -1,6 +1,6 @@
 .input-text-container {
   position: relative;
-  margin-top: 30px;
+  margin-top: 20px;
 }
 
 .input-text {
@@ -36,7 +36,17 @@
 #name:focus + .floater:before,
 #name:not(:placeholder-shown) + .floater:before,
 #patronymic:focus + .floater:before,
-#patronymic:not(:placeholder-shown) + .floater:before {
+#patronymic:not(:placeholder-shown) + .floater:before,
+#phone:focus + .floater:before,
+#phone:not(:placeholder-shown) + .floater:before,
+#department:focus + .floater:before,
+#department:not(:placeholder-shown) + .floater:before,
+#group:focus + .floater:before,
+#group:not(:placeholder-shown) + .floater:before,
+#tax_number:focus + .floater:before,
+#tax_number:not(:placeholder-shown) + .floater:before,
+#iban_number:focus + .floater:before,
+#iban_number:not(:placeholder-shown) + .floater:before {
   position: absolute;
   top: -20px;
   font-size: 14px;
@@ -44,15 +54,56 @@
 
 #surname + .floater:before,
 #surname:focus + .floater:before {
+  font-family: 'SF UI Display Medium';
+  font-size: 1em;
   content: "Прізвище";
 }
 
 #name + .floater:before,
 #name:focus + .floater:before {
+  font-family: 'SF UI Display Medium';
+  font-size: 1em;
   content: "Ім'я";
 }
 
 #patronymic + .floater:before,
 #patronymic:focus + .floater:before {
+  font-family: 'SF UI Display Medium';
+  font-size: 1em;
   content: "По-батькові";
+}
+
+#phone + .floater:before,
+#phone:focus + .floater:before {
+  font-family: 'SF UI Display Medium';
+  font-size: 1em;
+  content: "Номер телефону";
+}
+
+#department + .floater:before,
+#department:focus + .floater:before {
+  font-family: 'SF UI Display Medium';
+  font-size: 1em;
+  content: "Акронім назви факультету/інституту";
+}
+
+#group + .floater:before,
+#group:focus + .floater:before {
+  font-family: 'SF UI Display Medium';
+  font-size: 1em;
+  content: "Група";
+}
+
+#tax_number + .floater:before,
+#tax_number:focus + .floater:before {
+  font-family: 'SF UI Display Medium';
+  font-size: 1em;
+  content: "Ідентифікаційний код";
+}
+
+#iban_number + .floater:before,
+#iban_number:focus + .floater:before {
+  font-family: 'SF UI Display Medium';
+  font-size: 1em;
+  content: "IBAN рахунку";
 }

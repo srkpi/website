@@ -67,7 +67,7 @@
           <label for="radio-3" class="radio-label">Ощадбанк</label>
         </div>
       </div>
-      <h2>Дані заяви</h2>
+      <h2>Дані для формування заяви</h2>
       <div class="input-text-container">
         <input
           type="text"
@@ -146,9 +146,9 @@
           <label
             id="student_label"
             class="left-switcher-label"
-            for="student_status"
-            >Студент</label
-          >
+            for="student_status">
+            Студент
+          </label>
 
           <input type="radio" id="aspirant_status" name="study_status_radio" />
           <label
@@ -160,42 +160,60 @@
         </div>
       </div>
 
-      <input
+      <div class="input-text-container">
+        <input
         type="text"
         class="input-text"
-        placeholder="Номер телефону"
+        placeholder=" "
         id="phone"
         maxlength="70"
-      />
-
-      <input
+        /> 
+        <div class="floater"></div>
+      </div>
+      
+      <div class="input-text-container">
+        <input
         type="text"
         class="input-text"
         id="department"
-        placeholder="Акронім назви факультету/інституту"
-      />
-      <input
+        placeholder=" "
+        />
+        <div class="floater"></div>
+      </div>
+
+      <div class="input-text-container">
+        <input
         type="text"
         class="input-text"
         id="group"
-        placeholder="Шифр групи"
+        placeholder=" "
         maxlength="7"
-      />
+        />
+        <div class="floater"></div>
+      </div>
 
-      <input
+      <div class="input-text-container">
+        <input
         type="text"
         class="input-text"
-        placeholder="Ідентифікаційний код"
+        placeholder=" "
         id="tax_number"
         maxlength="10"
-      />
-      <input
+        />
+        <div class="floater"></div>
+      </div>
+
+      <div class="input-text-container">
+        <input
         type="text"
         class="input-text"
-        placeholder="IBAN рахунок"
+        placeholder=" "
         id="iban_number"
         maxlength="35"
-      />
+        disabled
+        />
+        <div class="floater"></div>
+      </div>  
     </form>
 
     <!-- Формування заяви -->

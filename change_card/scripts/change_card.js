@@ -1,10 +1,12 @@
-var departments = ["ІПСА" ,"ІТС" ,"ВПІ" ,"ІАТ" ,"ІЕЕ" ,"ІМЗ" ,"ІСЗЗІ" ,"ММІ" ,"ФТІ" ,"ІХФ" ,"ПБФ" ,"РТФ" ,"ТЕФ" ,"ФБМІ" ,"ФБТ" ,"ФЕА" ,"ФЕЛ" ,"ФІОТ" ,"ФЛ" ,"ФММ" ,"ФСП" ,"ФПМ" ,"ФМФ" ,"ХТФ"];
+// var departments = ["ІПСА" ,"ІТС" ,"ВПІ" ,"ІАТ" ,"ІЕЕ" ,"ІМЗ" ,"ІСЗЗІ" ,"ММІ" ,"ФТІ" ,"ІХФ" ,"ПБФ" ,"РТФ" ,"ТЕФ" ,"ФБМІ" ,"ФБТ" ,"ФЕА" ,"ФЕЛ" ,"ФІОТ" ,"ФЛ" ,"ФММ" ,"ФСП" ,"ФПМ" ,"ФМФ" ,"ХТФ"];
 // Змінна для визначення, чи заповнює форму прискоренник.
 var associate_degree = false;
 // Змінна для збереження стану заповнювача заяви (студентство/аспірантство).
 var academic_degree = null;
 // Змінна для збереження стану того, для якого банку формують заяву.
 var bank_name = null;
+// Змінна для збереження повного ПІБ того, хто заповнює заяву.
+var full_name = null;
 // Змінна для збереження стану того, який курс заповнює форму.
 var course_number = null;
 // Змінна для збереження стану того, з якого факультету/інституту заповнюють форму.
@@ -24,11 +26,11 @@ function checkBox(){
 function checkSex() {
 	var sex = $('input[name=gender_status_radio]:checked').val();
 	if(sex === 'Male'){
-		document.getElementById('aspirant_label').innerHTML = 'аспірант';
-		document.getElementById('student_label').innerHTML = 'студент';
+		document.getElementById('aspirant_label').innerHTML = 'аспіранта';
+		document.getElementById('student_label').innerHTML = 'студента';
 	} else {
-		document.getElementById('aspirant_label').innerHTML = 'аспірантка';
-		document.getElementById('student_label').innerHTML = 'студентка';
+		document.getElementById('aspirant_label').innerHTML = 'аспірантки';
+		document.getElementById('student_label').innerHTML = 'студентки';
 	}
 }
 
@@ -43,12 +45,18 @@ function getFullName(){
 	var surname = $('#surname').val().trim();
 	var patronymic = $('#patronymic').val().trim();
 	if(checkbox_status === true){
-		var full_name = surname + ' ' + name;
+		full_name = surname + ' ' + name;
 	} else {
-		var full_name = surname + ' ' + name + ' ' + patronymic;
+		full_name = surname + ' ' + name + ' ' + patronymic;
 	}
 	console.log(full_name);
 }
+
+// Маска для вводу номера телефону
+document.getElementById('phone').addEventListener('input', function (e) {
+	var x = e.target.value.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
+	e.target.value = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
+});
 
 
 function setInputFilter(textbox, inputFilter) {
@@ -68,20 +76,15 @@ function setInputFilter(textbox, inputFilter) {
 	});
 }
 
-//
-$(document).ready(function(){
-	$('#group').mask('  -    ');
-});
 // 
 setInputFilter(document.getElementById("tax_number"), function(value) {
 	return /^\d*$/.test(value); });
 
 function correctInput(){
-	var full_name = $('#full_name').val();
     var bank = $("input[name='chkBank']:checked").val();
     var OKR = $("input[name='chkOKR']:checked").val();
     var departament = $("#department").val();
-    var phone_number = $("#phone_number").val();
+    var phone_number = $("#phone").val();
     var tax_number = $("#tax_number").val();
     var iban_number = bank == "ПриватБанк" ? tax_number : $("#iban_number").val();
 	create_application(full_name, bank, OKR, cohort, departament, phone_number, tax_number, iban_number);
