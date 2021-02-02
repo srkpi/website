@@ -12,10 +12,11 @@
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <meta name="msapplication-TileColor" content="#da532c">
         <meta name="theme-color" content="#ffffff">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script type="text/javascript" src="scripts/change_card.js"></script>
-		<script src='scripts/pdfmake.min.js'></script> 
-		<script src='scripts/vfs_fonts.js'></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script type="text/javascript" src="scripts/change_card.js" defer></script>
+        <script src='scripts/pdfmake.min.js'></script>
+        <script src='scripts/vfs_fonts.js'></script>
+        <script src='scripts/jquery.mask.js'></script>
     </head>
     <body>        
 		<h1>Зміна банку для отримання стипендії</h1>
@@ -38,7 +39,7 @@
                 <label for="radio-3" class="radio-label">Ощадбанк</label>
             </div>
         </div>
-        <h2>Трохи ідентифікаційних даних</h2>
+        <h2>Дані заяви</h2>
         
         <input type="text" placeholder="Прізвище" id="surname" maxlength="70">
         <input type="text" placeholder="Ім'я" id="name" maxlength="70">
@@ -63,27 +64,36 @@
             <input type="radio" id="aspirant_status" name="study_status_radio">
             <label id="aspirant_label" for="aspirant_status">Аспірант</label>
         </div>
-
-        <input type="text" placeholder="Ідентифікаційний код" id="first_name" maxlength="70">
-        <input type="text" placeholder="IBAN рахунок" id="last_name" maxlength="70">	
-
-		<ul>
-            <div id="container">
-                <div id="complete"></div>
-                <input type="text" id="department" placeholder="Факультет/інститут">
-            </div>
+        <input type="text" placeholder="Номер телефону" id="phone" maxlength="70">
+        
+        <!-- Визначення статі для коректної подачи заяви -->
+        <div class="gender_status"> 
+            <input type="radio" id="male_status" name="gender_status_radio">
+            <label for="male_status"><i class="fas fa-mars"></i></label>
             
-            <li><input type="text" placeholder="Шифр групи" id="group" ></li>
-            <li><input type="text" placeholder="Телефон (з +380)" id="phone_number" ></li>
-            <li><input type="text" placeholder="Ідентифікаційний номер (РНОКПП)" id="tax_number" ></li>
-            <li><input type="text" placeholder="IBAN" id="iban_number"></li>
-        </ul>
+            <input type="radio" id="female_status" name="gender_status_radio">
+            <label for="female_status"><i class="fas fa-venus"></i></label>
+        </div>
+        <!-- Визначення студента/аспіранта -->
+        <div class="study_status"> 
+            <input type="radio" id="student_status" name="study_status_radio">
+            <label for="student_status">студент</label>
+            
+            <input type="radio" id="aspirant_status" name="study_status_radio">
+            <label for="aspirant_status">аспірант</label>
+        </div>
+        <input type="text" id="department" placeholder="Акронім назви факультету/інституту">
+        <input type="text" id="group" placeholder="Шифр групи" maxlength="7">
+
+        <input type="text" placeholder="Ідентифікаційний код" id="tax_number" maxlength="10">
+        <input type="text" placeholder="IBAN рахунок" id="iban_number" maxlength="35">	
+
+        <!-- Формування заяви -->
         <div class="application">
             <button onclick="onDownload()" id="create_application"><i class="fas fa-file-pdf"></i>Завантажити заяву</button>
-             або надіслати її у <a href="https://def.kpi.ua/vrzs"> відділ із розрахунків зарплат та стипендій</a> за допомогою 
+            <!--
             <button name="copy-to-clipboard" onclick="return copyToClipboard('olga_sereduk@ukr.net')" class="popover-buttons"><img src="content-copy.svg" alt="Копіювати"></button>
+            --> 
         </div>
     </body>
 </html>			
-
-		

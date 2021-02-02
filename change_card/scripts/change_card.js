@@ -51,16 +51,30 @@ function getFullName(){
 }
 
 
-function ValidPhone() {
-    var re = /^\d[\d\(\)\ -]{4,14}\d$/;
-    var myPhone = document.getElementById('phone_number').value;
-    var valid = re.test(myPhone);
-    if (valid) output = 'Номер телефона введен правильно!';
-    else output = 'Номер телефона введен неправильно!';
-	alert(output);
-    document.getElementById('message').innerHTML = document.getElementById('message').innerHTML+'<br />'+output;
-    return valid;
-}  
+function setInputFilter(textbox, inputFilter) {
+	["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop"].forEach(function(event) {
+	  textbox.addEventListener(event, function() {
+		if (inputFilter(this.value)) {
+		  this.oldValue = this.value;
+		  this.oldSelectionStart = this.selectionStart;
+		  this.oldSelectionEnd = this.selectionEnd;
+		} else if (this.hasOwnProperty("oldValue")) {
+		  this.value = this.oldValue;
+		  this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+		} else {
+		  this.value = "";
+		}
+	  });
+	});
+}
+
+//
+$(document).ready(function(){
+	$('#group').mask('  -    ');
+});
+// 
+setInputFilter(document.getElementById("tax_number"), function(value) {
+	return /^\d*$/.test(value); });
 
 function correctInput(){
 	var full_name = $('#full_name').val();
@@ -72,7 +86,6 @@ function correctInput(){
     var iban_number = bank == "ПриватБанк" ? tax_number : $("#iban_number").val();
 	create_application(full_name, bank, OKR, cohort, departament, phone_number, tax_number, iban_number);
 }
-
 // Формування POST запиту в Google Форму. https://github.com/RGZorzo/Googleformpost/blob/master/script.js
 
 function onDownload() {
