@@ -117,9 +117,13 @@
             name="gender_status_radio"
             value="Male"
           />
-          <label for="male_status" onclick="timeoutCheckSex();"
-            ><i class="fas fa-mars"></i
-          ></label>
+          <label
+            for="male_status"
+            class="left-switcher-label"
+            onclick="timeoutCheckSex();"
+          >
+            <i class="fas fa-mars"></i>
+          </label>
 
           <input
             type="radio"
@@ -127,18 +131,32 @@
             name="gender_status_radio"
             value="Female"
           />
-          <label for="female_status" onclick="timeoutCheckSex();"
-            ><i class="fas fa-venus"></i
-          ></label>
+          <label
+            for="female_status"
+            class="right-switcher-label"
+            onclick="timeoutCheckSex();"
+          >
+            <i class="fas fa-venus"></i>
+          </label>
         </div>
 
         <!-- Визначення студента/аспіранта -->
         <div class="study_status switcher">
           <input type="radio" id="student_status" name="study_status_radio" />
-          <label id="student_label" for="student_status">Студент</label>
+          <label
+            id="student_label"
+            class="left-switcher-label"
+            for="student_status"
+            >Студент</label
+          >
 
           <input type="radio" id="aspirant_status" name="study_status_radio" />
-          <label id="aspirant_label" for="aspirant_status">Аспірант</label>
+          <label
+            id="aspirant_label"
+            class="right-switcher-label"
+            for="aspirant_status"
+            >Аспірант</label
+          >
         </div>
       </div>
 
