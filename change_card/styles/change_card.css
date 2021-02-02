@@ -1,190 +1,179 @@
 @font-face {
-    font-family: 'SF UI Display Ultralight';
-    font-style: normal;
-    font-weight: normal;
-    src: url('fonts/sf-ui-display-ultralight.woff') format('woff');
-    }
-    
-    
-    @font-face {
-    font-family: 'SF UI Display Thin';
-    font-style: normal;
-    font-weight: normal;
-    src: url('fonts/sf-ui-display-thin.woff') format('woff');
-    }
-    
-    
-    @font-face {
-    font-family: 'SF UI Display Light';
-    font-style: normal;
-    font-weight: normal;
-    src: url('fonts/sf-ui-display-light.woff') format('woff');
-    }
-    
-    
-    @font-face {
-    font-family: 'SF UI Display Medium';
-    font-style: normal;
-    font-weight: normal;
-    src: url('fonts/sf-ui-display-medium.woff') format('woff');
-    }
-    
-    
-    @font-face {
-    font-family: 'SF UI Display Semibold';
-    font-style: normal;
-    font-weight: normal;
-    src: url('fonts/sf-ui-display-semibold.woff') format('woff');
-    }
-    
-    
-    @font-face {
-    font-family: 'SF UI Display Bold';
-    font-style: normal;
-    font-weight: normal;
-    src: url('fonts/sf-ui-display-bold.woff') format("woff");
-    }
-    
-    
-    @font-face {
-    font-family: 'SF UI Display Heavy';
-    font-style: normal;
-    font-weight: normal;
-    src: url('fonts/sf-ui-display-heavy.woff') format('woff');
-    }
-    
-    
-    @font-face {
-    font-family: 'SF UI Display Black';
-    font-style: normal;
-    font-weight: normal;
-    src: url('fonts/sf-ui-display-black.woff') format('woff');
-    }
+  font-family: "SF UI Display Ultralight";
+  font-style: normal;
+  font-weight: normal;
+  src: url("fonts/sf-ui-display-ultralight.woff") format("woff");
+}
+
+@font-face {
+  font-family: "SF UI Display Thin";
+  font-style: normal;
+  font-weight: normal;
+  src: url("fonts/sf-ui-display-thin.woff") format("woff");
+}
+
+@font-face {
+  font-family: "SF UI Display Light";
+  font-style: normal;
+  font-weight: normal;
+  src: url("fonts/sf-ui-display-light.woff") format("woff");
+}
+
+@font-face {
+  font-family: "SF UI Display Medium";
+  font-style: normal;
+  font-weight: normal;
+  src: url("fonts/sf-ui-display-medium.woff") format("woff");
+}
+
+@font-face {
+  font-family: "SF UI Display Semibold";
+  font-style: normal;
+  font-weight: normal;
+  src: url("fonts/sf-ui-display-semibold.woff") format("woff");
+}
+
+@font-face {
+  font-family: "SF UI Display Bold";
+  font-style: normal;
+  font-weight: normal;
+  src: url("fonts/sf-ui-display-bold.woff") format("woff");
+}
+
+@font-face {
+  font-family: "SF UI Display Heavy";
+  font-style: normal;
+  font-weight: normal;
+  src: url("fonts/sf-ui-display-heavy.woff") format("woff");
+}
+
+@font-face {
+  font-family: "SF UI Display Black";
+  font-style: normal;
+  font-weight: normal;
+  src: url("fonts/sf-ui-display-black.woff") format("woff");
+}
 
 body {
-    margin: 2%;
+  margin: 2%;
+  font-family: "SF UI Display Black";
+}
+
+form {
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@media screen and (max-width: 600px) {
+  form {
+    width: 100%;
+  }
 }
 
 h1 {
-    font-family: 'SF UI Display Black';
-    font-size: 2.5em;
-    margin-top: 0px;
+  font-size: 2.5em;
+  margin-top: 0px;
 }
 
 h2 {
-    font-family: 'SF UI Display Bold';
-    font-size: 1.5em;
-    margin-top: 0px;
+  font-size: 1.5em;
+  margin-top: 0px;
 }
 
-.study_status {
-    border: solid 3px #1329e6;
-    color:#fff;
-    display: inline-block;
-    margin: 20px;
-    border-radius: 10px;
-    overflow: hidden;
+.select-statuses {
+  display: flex;
+  align-items: center;
 }
 
-.gender_status {
-    border: solid 3px #1329e6;
-    color:#fff;
-    display: inline-block;
-    margin: 20px;
-    border-radius: 10px;
-    overflow: hidden;
+@media screen and (max-width: 600px) {
+  .select-statuses {
+    flex-direction: column;
+  }
 }
 
-.study_status input[type=radio] {
-    position: absolute;
-    visibility: hidden;
-    display: none;
+.switcher {
+  border: solid 2px #1329e6;
+  color: #fff;
+  justify-items: center;
+  width: 230px;
+  display: inline-grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 10px;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
-.gender_status input[type=radio] {
-    position: absolute;
-    visibility: hidden;
-    display: none;
+.switcher input[type="radio"] {
+  position: absolute;
+  visibility: hidden;
+  display: none;
 }
 
-.study_status label {
-    color: #1329e6;
-    display: inline-block;
-    cursor: pointer;
-    font-weight: bold;
-    padding: 5px 20px;
+.switcher label {
+  color: #1329e6;
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 5px 0;
+  width: 100%;
 }
 
-.gender_status label {
-    color: #1329e6;
-    display: inline-block;
-    cursor: pointer;
-    font-weight: bold;
-    padding: 5px 20px;
-}
-  
-.study_status input[type=radio]:checked + label {
-    background:#1329e6;
-    color: #ffffff;
+.switcher input[type="radio"]:checked + label {
+  background: #1329e6;
+  color: #ffffff;
 }
 
-.gender_status input[type=radio]:checked + label {
-    background:#1329e6;
-    color: #ffffff;
-}
-
-.study_status label + input[type=radio] + label {
-    border-left: solid 4px lighten(#1329e6,60%);
-}
-
-.gender_status label + input[type=radio] + label {
-    border-left: solid 4px lighten(#1329e6,60%);
+.switcher label + input[type="radio"] + label {
+  border-left: solid 4px lighten(#1329e6, 60%);
 }
 
 .bank_selection {
-    font-family: 'SF UI Display Semibold';
+  font-family: "SF UI Display Semibold";
 }
 
 .name {
-    font-family: 'SF UI Display Semibold';
+  font-family: "SF UI Display Semibold";
 }
 
-input[type="radio"] { 
-    margin-left: 0px; 
+input[type="radio"] {
+  margin-left: 0px;
 }
 
-input[type="radio"] + label { 
-    font-family: 'SF UI Display Medium';
-    font-size: 14px; 
+input[type="radio"] + label {
+  font-family: "SF UI Display Medium";
+  font-size: 14px;
 }
 
 #create_application {
-    width: 300px;
-    height: 60px;
-    font-family: 'SF UI Display Medium';
-    font-weight: 700;
-    font-size: 20px;
-    text-transform: uppercase;
-    font-weight: 400;
-    text-align: center;
-    color: #000;
-    background-color: rgb(171, 210, 250);
-    border: none;
-    border-radius: 45px;
-    border-width: 5px;
-    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease 0s;
-    cursor: pointer;
-    outline: 5px;
+  width: 300px;
+  height: 60px;
+  font-family: "SF UI Display Medium";
+  font-weight: 700;
+  font-size: 20px;
+  text-transform: uppercase;
+  font-weight: 400;
+  text-align: center;
+  color: #000;
+  background-color: rgb(171, 210, 250);
+  border: none;
+  border-radius: 45px;
+  border-width: 5px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.75s ease;
+  cursor: pointer;
+  outline: 5px;
 }
-  
+
 #create_application:hover {
-    background-color: #1329e6;
-    box-shadow: 0px 15px 20px rgba(25, 26, 25, 0.4);
-    color: #fff;
+  background-color: #1329e6;
+  box-shadow: 0px 15px 20px rgba(25, 26, 25, 0.4);
+  color: #fff;
 }
 
 .fa-file-pdf {
-    font-size: 22px;
-    margin-right: 18px;
+  font-size: 22px;
+  margin-right: 18px;
 }

@@ -1,0 +1,58 @@
+.input-text-container {
+  position: relative;
+  margin-top: 30px;
+}
+
+.input-text {
+  transition: 0.25s border ease-in-out;
+  border-radius: 0 !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background: transparent;
+  border: 0;
+  border-bottom: 2px solid #444;
+  font-size: 20px;
+  width: 100%;
+  padding: 0;
+}
+
+.input-text:focus {
+  border-bottom-color: #1329e6;
+}
+
+.input-text:not(.touched) + .floater:before {
+  display: block;
+  position: absolute;
+  top: 0;
+  font-size: 20px;
+  color: #666;
+  pointer-events: none;
+  transition: 0.25s all ease-in-out;
+}
+
+.input-text.touched + .floater:before,
+#surname:focus + .floater:before,
+#surname:not(:placeholder-shown) + .floater:before,
+#name:focus + .floater:before,
+#name:not(:placeholder-shown) + .floater:before,
+#patronymic:focus + .floater:before,
+#patronymic:not(:placeholder-shown) + .floater:before {
+  position: absolute;
+  top: -20px;
+  font-size: 14px;
+}
+
+#surname + .floater:before,
+#surname:focus + .floater:before {
+  content: "Прізвище";
+}
+
+#name + .floater:before,
+#name:focus + .floater:before {
+  content: "Ім'я";
+}
+
+#patronymic + .floater:before,
+#patronymic:focus + .floater:before {
+  content: "По-батькові";
+}

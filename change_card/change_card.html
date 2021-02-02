@@ -1,86 +1,193 @@
 <html>
-    <head>
-	<title>Формування заяви для зміни картки | Студрада КПІ ім. Ігоря Сікорського</title>
-        <meta charset="utf-8">
-        <link rel= "stylesheet" type= "text/css" href= "styles/change_card.css">
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
-        <link rel="apple-touch-icon" sizes="180x180" href="favicon_package/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="favicon_package/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="favicon_package/favicon-16x16.png">
-        <!-- <link rel="manifest" href="favicon_package/site.webmanifest"> -->
-        <link rel="mask-icon" href="favicon_package/safari-pinned-tab.svg" color="#5bbad5">
-        <meta name="viewport" content="width=device-width,initial-scale=1">
-        <meta name="msapplication-TileColor" content="#da532c">
-        <meta name="theme-color" content="#ffffff">
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-        <script type="text/javascript" src="scripts/change_card.js" defer></script>
-        <script src='scripts/pdfmake.min.js'></script>
-        <script src='scripts/vfs_fonts.js'></script>
-        <script src='scripts/jquery.mask.js'></script>
-    </head>
-    <body>        
-		<h1>Зміна банку для отримання стипендії</h1>
-        <h2>Обери банк, в який хочеш перейти</h2>
-        <div class="bank-container">
-            <div class="radio">
-                <input id="radio-1" name="radio" type="radio">
-                <label for="radio-1" class="radio-label">ПриватБанк</label>
-            </div>
-            <div class="radio">
-                <input id="radio-2" name="radio" type="radio">
-                <label  for="radio-2" class="radio-label">Монобанк</label>
-            </div>
-            <div class="radio">
-                <input id="radio-3" name="radio" type="radio">
-                <label for="radio-3" class="radio-label">Альфа-Банк</label>
-            </div>
-            <div class="radio">
-                <input id="radio-3" name="radio" type="radio">
-                <label for="radio-3" class="radio-label">Ощадбанк</label>
-            </div>
+  <head>
+    <title>
+      Формування заяви для зміни картки | Студрада КПІ ім. Ігоря Сікорського
+    </title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="styles/change_card.css" />
+    <link rel="stylesheet" type="text/css" href="styles/material_input.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="favicon_package/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="favicon_package/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="favicon_package/favicon-16x16.png"
+    />
+    <!-- <link rel="manifest" href="favicon_package/site.webmanifest"> -->
+    <link
+      rel="mask-icon"
+      href="favicon_package/safari-pinned-tab.svg"
+      color="#5bbad5"
+    />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
+    <script
+      type="text/javascript"
+      src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"
+    ></script>
+    <script type="text/javascript" src="scripts/change_card.js" defer></script>
+    <script src="scripts/pdfmake.min.js"></script>
+    <script src="scripts/vfs_fonts.js"></script>
+    <script src="scripts/jquery.mask.js"></script>
+  </head>
+  <body>
+    <h1>Зміна банку для отримання стипендії</h1>
+    <h2>Обери банк, в який хочеш перейти</h2>
+    <form>
+      <div class="bank-container">
+        <div class="radio">
+          <input id="radio-1" name="radio" type="radio" />
+          <label for="radio-1" class="radio-label">ПриватБанк</label>
         </div>
-        <h2>Дані заяви</h2>
-        <div class="container">
-            <input type="text" placeholder="Прізвище" id="surname" maxlength="70">
-            <input type="text" placeholder="Ім'я" id="name" maxlength="70">
-            <input type="text" placeholder="По-батькові" id="patronymic" maxlength="70">
-            <div>
-                <input type="checkbox" id="patronymic_checkbox" name="check_patronymic" onclick="setTimeout(checkBox, 0);">
-                <label for="patronymic_checkbox">По-батькові відсутнє</label>
-            </div>
-            
-            <!-- Визначення статі для коректної подачи заяви -->
-            <div class="gender_status"> 
-                <input type="radio" id="male_status" name="gender_status_radio" value="Male">
-                <label for="male_status" onclick="timeoutCheckSex();"><i class="fas fa-mars"></i></label>
-                
-                <input type="radio" id="female_status" name="gender_status_radio" value="Female">
-                <label for="female_status" onclick="timeoutCheckSex();"><i class="fas fa-venus"></i></label>
-            </div>
+        <div class="radio">
+          <input id="radio-2" name="radio" type="radio" />
+          <label for="radio-2" class="radio-label">Монобанк</label>
+        </div>
+        <div class="radio">
+          <input id="radio-3" name="radio" type="radio" />
+          <label for="radio-3" class="radio-label">Альфа-Банк</label>
+        </div>
+        <div class="radio">
+          <input id="radio-3" name="radio" type="radio" />
+          <label for="radio-3" class="radio-label">Ощадбанк</label>
+        </div>
+      </div>
+      <h2>Дані заяви</h2>
+      <div class="input-text-container">
+        <input
+          type="text"
+          class="input-text"
+          placeholder=" "
+          id="surname"
+          maxlength="70"
+        />
+        <div class="floater"></div>
+      </div>
+      <div class="input-text-container">
+        <input
+          type="text"
+          class="input-text"
+          placeholder=" "
+          id="name"
+          maxlength="70"
+        />
+        <div class="floater"></div>
+      </div>
+      <div class="input-text-container">
+        <input
+          type="text"
+          class="input-text"
+          placeholder=" "
+          id="patronymic"
+          maxlength="70"
+        />
+        <div class="floater"></div>
+      </div>
+      <div>
+        <input
+          type="checkbox"
+          id="patronymic_checkbox"
+          name="check_patronymic"
+          onclick="setTimeout(checkBox, 0);"
+        />
+        <label for="patronymic_checkbox">По-батькові відсутнє</label>
+      </div>
 
-            <!-- Визначення студента/аспіранта -->
-            <div class="study_status"> 
-                <input type="radio" id="student_status" name="study_status_radio">
-                <label id="student_label" for="student_status">Студент</label>
-                
-                <input type="radio" id="aspirant_status" name="study_status_radio">
-                <label id="aspirant_label" for="aspirant_status">Аспірант</label>
-            </div>
-            <input type="text" placeholder="Номер телефону" id="phone" maxlength="70">
-            
-            <input type="text" id="department" placeholder="Акронім назви факультету/інституту">
-            <input type="text" id="group" placeholder="Шифр групи" maxlength="7">
-    
-            <input type="text" placeholder="Ідентифікаційний код" id="tax_number" maxlength="10">
-            <input type="text" placeholder="IBAN рахунок" id="iban_number" maxlength="35">	
+      <div class="select-statuses">
+        <!-- Визначення статі для коректної подачи заяви -->
+        <div class="gender_status switcher">
+          <input
+            type="radio"
+            id="male_status"
+            name="gender_status_radio"
+            value="Male"
+          />
+          <label for="male_status" onclick="timeoutCheckSex();"
+            ><i class="fas fa-mars"></i
+          ></label>
+
+          <input
+            type="radio"
+            id="female_status"
+            name="gender_status_radio"
+            value="Female"
+          />
+          <label for="female_status" onclick="timeoutCheckSex();"
+            ><i class="fas fa-venus"></i
+          ></label>
         </div>
 
-        <!-- Формування заяви -->
-        <div class="application">
-            <button onclick="onDownload()" id="create_application"><i class="fas fa-file-pdf"></i>Завантажити заяву</button>
-            <!--
-            <button name="copy-to-clipboard" onclick="return copyToClipboard('olga_sereduk@ukr.net')" class="popover-buttons"><img src="content-copy.svg" alt="Копіювати"></button>
-            --> 
+        <!-- Визначення студента/аспіранта -->
+        <div class="study_status switcher">
+          <input type="radio" id="student_status" name="study_status_radio" />
+          <label id="student_label" for="student_status">Студент</label>
+
+          <input type="radio" id="aspirant_status" name="study_status_radio" />
+          <label id="aspirant_label" for="aspirant_status">Аспірант</label>
         </div>
-    </body>
-</html>			
+      </div>
+
+      <input
+        type="text"
+        class="input-text"
+        placeholder="Номер телефону"
+        id="phone"
+        maxlength="70"
+      />
+
+      <input
+        type="text"
+        class="input-text"
+        id="department"
+        placeholder="Акронім назви факультету/інституту"
+      />
+      <input
+        type="text"
+        class="input-text"
+        id="group"
+        placeholder="Шифр групи"
+        maxlength="7"
+      />
+
+      <input
+        type="text"
+        class="input-text"
+        placeholder="Ідентифікаційний код"
+        id="tax_number"
+        maxlength="10"
+      />
+      <input
+        type="text"
+        class="input-text"
+        placeholder="IBAN рахунок"
+        id="iban_number"
+        maxlength="35"
+      />
+    </form>
+
+    <!-- Формування заяви -->
+    <div class="application">
+      <button onclick="onDownload()" id="create_application">
+        <i class="fas fa-file-pdf"></i>Завантажити заяву
+      </button>
+      <!--
+                <button name="copy-to-clipboard" onclick="return copyToClipboard('olga_sereduk@ukr.net')" class="popover-buttons"><img src="content-copy.svg" alt="Копіювати"></button>
+            -->
+    </div>
+  </body>
+</html>
