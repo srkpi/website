@@ -11,6 +11,45 @@ var course_number = null;
 var departament_name = null;
 // Змінна для збереження назви групи.
 var cohort = null;
+// Змінна для збереження статусу чекбокса.
+var checkbox_status = false;
+
+function checkBox(){
+	$('#patronymic_checkbox').on('click', function () {
+    	checkbox_status = $(this).is(':checked');
+	})
+	console.log(checkbox_status);
+}
+
+function checkSex() {
+	var sex = $('input[name=gender_status_radio]:checked').val();
+	if(sex === 'Male'){
+		document.getElementById('aspirant_label').innerHTML = 'Аспірант';
+		document.getElementById('student_label').innerHTML = 'Студент';
+	} else {
+		document.getElementById('aspirant_label').innerHTML = 'Аспірантка';
+		document.getElementById('student_label').innerHTML = 'Студентка';
+	}
+}
+
+function timeoutCheckSex(){
+	setTimeout(checkSex, 0);
+}
+
+timeoutCheckSex();
+
+function getFullName(){
+	var name = $('#name').val().trim();
+	var surname = $('#surname').val().trim();
+	var patronymic = $('#patronymic').val().trim();
+	if(checkbox_status === true){
+		var full_name = surname + ' ' + name;
+	} else {
+		var full_name = surname + ' ' + name + ' ' + patronymic;
+	}
+	console.log(full_name);
+}
+
 
 function ValidPhone() {
     var re = /^\d[\d\(\)\ -]{4,14}\d$/;
@@ -74,6 +113,7 @@ function onDownload() {
 			} else alert("Error");
 		}
 	}
+	getFullName();
 }
 
     // $.post('change_card.php', {
