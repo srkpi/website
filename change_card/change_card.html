@@ -12,50 +12,60 @@
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <meta name="msapplication-TileColor" content="#da532c">
         <meta name="theme-color" content="#ffffff">
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script type="text/javascript" src="scripts/change_card.js"></script>
 		<script src='scripts/pdfmake.min.js'></script> 
 		<script src='scripts/vfs_fonts.js'></script>
     </head>
     <body>        
-		<h1>Формування заяви для зміни банківської картки</h1>
-        <h2>Змінити картку можуть лише студенти 2, 3, 4 та 6 курсів.</h2>
-        <span class="bank_selection">Банк, в якому плануєш отримувати стипендію в наступному місяці:</span><br/>
-        <!-- Невпорядкований список радіо-баттонів зі списком -->
-        <span class="name">Стать</span>
-        <div class="input-group">
-            <input type="radio" name="gender" value="male" id="male">
-            <label for="male"></label><i class="fas fa-mars"></i>
-            <input type="radio" name="gender" value="female" id="female">
-            <label for="male"></label><i class="fas fa-venus"></i>
+		<h1>Зміна банку для отримання стипендії</h1>
+        <h2>Обери банк, в який хочеш перейти</h2>
+        <div class="bank-container">
+            <div class="radio">
+                <input id="radio-1" name="radio" type="radio">
+                <label for="radio-1" class="radio-label">ПриватБанк</label>
+            </div>
+            <div class="radio">
+                <input id="radio-2" name="radio" type="radio">
+                <label  for="radio-2" class="radio-label">Монобанк</label>
+            </div>
+            <div class="radio">
+                <input id="radio-3" name="radio" type="radio">
+                <label for="radio-3" class="radio-label">Альфа-Банк</label>
+            </div>
+            <div class="radio">
+                <input id="radio-3" name="radio" type="radio">
+                <label for="radio-3" class="radio-label">Ощадбанк</label>
+            </div>
         </div>
-		<span class="name">ПІБ:</span>
-		<input type="text" placeholder="Шевченко Іван Тарасович" id="full_name" maxlength="70">
-        <br/>
-		<span class="name">ОКР:</span>
-		<div> 
-            <table>
-			<tr><td width="80"><input id="chkStudent" name="chkOKR" value="студента" type="radio"> 
-            <label for="student"> 
-                <span></span>Студент
-            </label></td>
-			<td width="100"><input id="chkStudent" name="chkOKR" value="студентки" type="radio"> 
-            <label for="student"> 
-                <span></span> Студентка
-            </label> </td></tr>	</table>		
+        <h2>Трохи ідентифікаційних даних</h2>
+        
+        <input type="text" placeholder="Прізвище" id="surname" maxlength="70">
+        <input type="text" placeholder="Ім'я" id="name" maxlength="70">
+        <input type="text" placeholder="По-батькові" id="patronymic" maxlength="70">
+        <div>
+            <input type="checkbox" id="patronymic_checkbox" name="check_patronymic" onclick="setTimeout(checkBox, 0);">
+            <label for="patronymic_checkbox">По-батькові відсутнє</label>
         </div>
 
-		<div> 
-            <table>
-			<tr><td width="80"><input id="chkPostgraduate" name="chkOKR" value="аспіранта" type="radio"> 
-            <label for="student"> 
-                <span></span>Аспірант
-            </label></td>
-			<td width="100"><input id="chkPostgraduate" name="chkOKR" value="аспірантки" type="radio"> 
-            <label for="student"> 
-                <span></span> Аспірантка
-            </label> </td></tr> </table>				
-        </div>	
+        <div class="gender_status"> 
+            <input type="radio" id="male_status" name="gender_status_radio" value="Male">
+            <label for="male_status" onclick="timeoutCheckSex();"><i class="fas fa-mars"></i></label>
+            
+            <input type="radio" id="female_status" name="gender_status_radio" value="Female">
+            <label for="female_status" onclick="timeoutCheckSex();"><i class="fas fa-venus"></i></label>
+        </div>
+
+        <div class="study_status"> 
+            <input type="radio" id="student_status" name="study_status_radio">
+            <label id="student_label" for="student_status">Студент</label>
+            
+            <input type="radio" id="aspirant_status" name="study_status_radio">
+            <label id="aspirant_label" for="aspirant_status">Аспірант</label>
+        </div>
+
+        <input type="text" placeholder="Ідентифікаційний код" id="first_name" maxlength="70">
+        <input type="text" placeholder="IBAN рахунок" id="last_name" maxlength="70">	
 
 		<ul>
             <div id="container">
