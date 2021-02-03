@@ -194,15 +194,15 @@ function getCourseNumber(group) {
 	return course_number;
 }
 
-function create_application(full_name, bank, study_status, group, departament,phone_number, tax_number, iban_number) { 
-	
+function create_application(bank, study_status, group, departament,phone_number, tax_number, iban_number) { 
+	full_name = getFullName();
 	let today = new Date(); 
 	let year = today.getFullYear();
 	let month0 = today.getMonth()+1;
 	let month = (month0 < 10 ? "0"+month0 : month0);
 	let day0 = today.getDate();
 	let day=(day0<10 ? "0"+day0 : day0);
-	let date = day+"."+month+"."+year+" р."
+	let date = day+ "." + month + "." + year;
 	
 	const str = study_status + " групи " + group + " " + departament;
 	var HText = str.length;
@@ -360,21 +360,13 @@ function create_application(full_name, bank, study_status, group, departament,ph
 		},
 	}
 	
-
-
 	pdfMake.fonts = {
-    /* Arial: {
-    	normal: 'fonts/ArialNarrow.ttf',
-    	bold: 'fonts/ArialNarrow-Bold.ttf',
-    	italics: 'fonts/ArialNarrow-Italic.ttf',
-    	bolditalics: 'fonts/ArialNarrow-BoldItalic.ttf'
-    } */
-    	Roboto: {
-    		normal: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/fonts/Roboto/Roboto-Regular.ttf',
-    		bold: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/fonts/Roboto/Roboto-Medium.ttf',
-    		italics: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/fonts/Roboto/Roboto-Italic.ttf',
-    		bolditalics: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/fonts/Roboto/Roboto-MediumItalic.ttf'
-    	},
+		Roboto: {
+			normal: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/fonts/Roboto/Roboto-Regular.ttf',
+			bold: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/fonts/Roboto/Roboto-Medium.ttf',
+			italics: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/fonts/Roboto/Roboto-Italic.ttf',
+			bolditalics: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/fonts/Roboto/Roboto-MediumItalic.ttf'
+		},
 	}
 
 	pdfMake.createPdf(docInfo,null,fonts).download('Заява на зміну картки.pdf');
