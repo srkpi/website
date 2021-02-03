@@ -17,6 +17,7 @@ var group = null;
 var checkbox_status = false;
 
 function checkBank(){
+	document.getElementById('main').hidden=false;
 	if (document.getElementById('radio-1').checked) 
 	{
 		document.getElementById('iban_container').hidden=true;
@@ -439,3 +440,190 @@ function create_application(full_name, bank, study_status, group, departament,ph
 
 	pdfMake.createPdf(docInfo,null,fonts).download('Заява на зміну картки.pdf');
 }
+
+function create_application_mono(full_name, bank, study_status, group, departament,phone_number, tax_number, iban_number,card_number) { 
+	full_name = getFullName();
+	let today = new Date(); 
+	let year = today.getFullYear();
+	let month0 = today.getMonth()+1;
+	let month = (month0 < 10 ? "0"+month0 : month0);
+	let day0 = today.getDate();
+	let day=(day0<10 ? "0"+day0 : day0);
+	let date = day+ "." + month + "." + year;
+	
+	const str = study_status + " групи " + group + " " + departament;
+	var HText = str.length;
+	var HFName = full_name.length;
+	var HText123 = 564 - (HText > HFName ? 8 * HText : 8.5 * HFName);
+
+	console.log(`${HText} ${HFName}  ${HText123}`);
+	var docInfo = {
+		info: {
+			title:'Заява для зміни банківської картки',
+			author:'Студентська рада КПІ ім. Ігоря Сікорського',
+		},
+		
+		pageSize:'A5',
+		pageOrientation:'landscape',
+		pageMargins:[30,20,30,20],
+		
+		
+		content: [
+			{
+				text: "Головному бухгалтеру",
+				fontSize:14,
+				//alignment:'left',
+				margin: [ HText123, 20, 0, 0 ]
+				
+			},
+			{
+				text: "КПІ ім. Ігоря Сікорського",
+				fontSize:14,
+				margin: [ HText123, 0, 0, 0 ]
+				//pageBreak:'after'
+			},
+			{
+				text: "Людмилі СУББОТІНІЙ",
+				fontSize:14,
+				margin: [ HText123, 0, 0, 0 ]
+				//pageBreak:'after'
+			},
+			{
+				text: study_status + " групи " + group + " " +departament ,
+				fontSize:14,
+				margin: [ HText123, 10, 0, 0 ]
+				//pageBreak:'after'
+			},
+			{
+				text: full_name,
+				fontSize:14,
+				margin: [ HText123, 0, 0, 0 ]
+			},
+			{
+				text: phone_number,
+				fontSize:14,
+				margin: [ HText123, 0, 0, 0 ]
+			},
+			
+			{
+				text: "ЗАЯВА",
+				fontSize:14,
+				bold:true,
+				alignment:'center',
+				margin: [ 0, 50, 0, 0 ]
+			},
+			
+			{
+				text: "",
+				fontSize:14,
+				bold:true,
+				alignment:'center',
+				margin: [ 0, 20, 0, 0 ]
+			},
+					
+				
+		{
+				style: 'tableExample',
+				table: {
+					alignment:'right',
+					widths: [ 'auto','*'],
+					body: [
+				[ {border: [ false, false, false,false],text:'Прошу перерархувати доходи до '},{alignment:'center',border: [ false, false, false,true],text: bank}],
+						
+					]
+				}
+		},	
+
+		{
+				style: 'tableExample',
+				table: {
+					alignment:'right',
+					widths: [ 'auto','*','auto'],
+					body: [
+				[ {border: [ false, false, false,false],text:'на рахунок №'},{alignment:'center',border: [ false, false, false,true],text: iban_number},{border: [ false, false, false,false],text:';'}],
+						
+					]
+				}
+		},
+
+		{
+				style: 'tableExample',
+				table: {
+					alignment:'right',
+					widths: [ 'auto','*','auto'],
+					body: [
+				[ {border: [ false, false, false,false],text:'номер картки'},{alignment:'center',border: [ false, false, false,true],text: iban_number},{border: [ false, false, false,false],text:'.'}],
+						
+					]
+				}
+		},
+		
+		{
+				style: 'tableExample',
+				table: {
+					alignment:'right',
+					widths: [ 'auto','*'],
+					body: [
+				[ {border: [ false, false, false,false],text:'Ідентифікаційний номер (РНОКПП)'},{alignment:'center',border: [ false, false, false,true],text: tax_number}],
+						
+					]
+				}
+		},
+		
+		{
+				text: "",
+				fontSize:14,
+				bold:true,
+				alignment:'center',
+				margin: [ 0, 30, 0, 0 ]
+			},
+		
+		{
+				style: 'tableExample',
+				table: {
+					
+					//alignment:'right',
+					widths: [ 'auto','*','auto'],
+					body: [
+				[{alignment:'center',border: [ false, false, false,false],text:date},{border: [ false, false, false,false],text:''},{alignment:'center',border: [ false, false, false,false],text: '____________________\n(підпис)'}],
+									
+					]
+				}
+		},	
+		],
+		
+		styles: {
+			header: {
+				fontSize: 18,
+				bold: true,
+				margin: [0, 0, 0, 10]
+			},
+			subheader: {
+				fontSize: 16,
+				bold: true,
+				margin: [0, 10, 0, 5]
+			},
+			tableExample: {
+				margin: [0, 5, 0, 0]
+			},
+			tableHeader: {
+				bold: true,
+				fontSize: 13,
+				color: 'black'
+			}
+		},
+	}
+	
+	pdfMake.fonts = {
+		Roboto: {
+			normal: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/fonts/Roboto/Roboto-Regular.ttf',
+			bold: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/fonts/Roboto/Roboto-Medium.ttf',
+			italics: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/fonts/Roboto/Roboto-Italic.ttf',
+			bolditalics: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/fonts/Roboto/Roboto-MediumItalic.ttf'
+		},
+	}
+
+	pdfMake.createPdf(docInfo,null,fonts).download('Заява на зміну картки.pdf');
+}
+
+
