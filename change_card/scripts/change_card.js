@@ -17,10 +17,12 @@ var cohort = null;
 var checkbox_status = false;
 
 function checkPatronymicCheckbox(){
-	document.getElementById('patronymic_checkbox').onchange = function() {
+	document.getElementById('patronymic_checkbox').onchange = function(event) {
+		const checkboxVal = event.target.checked;
+		
 		// Якщо patronymic_checkbox натиснуто - поле patronymic деактивовано.
-		document.getElementById('patronymic').disabled = this.checked;
-		checkbox_status = true;
+		document.getElementById('patronymic').disabled = checkboxVal;
+		checkbox_status = checkboxVal;
 	};
 	return checkbox_status;
 }
