@@ -16,6 +16,19 @@ var group = null;
 // Змінна для збереження статусу чекбокса.
 var checkbox_status = false;
 
+function checkBank(){
+	if (document.getElementById('radio-1').checked) 
+	{
+		document.getElementById('iban_container').hidden=true;
+	}
+	else 
+	{
+		document.getElementById('iban_container').hidden=false;
+	}
+	
+	
+}
+
 function checkPatronymicCheckbox(){
 	document.getElementById('patronymic_checkbox').onchange = function(event) {
 		const checkboxVal = event.target.checked;
