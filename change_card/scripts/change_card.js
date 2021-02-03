@@ -55,16 +55,20 @@ timeoutCheckSex();
 
 // Конкатенація ПІБ
 function getFullName(){
-	var firts_name = $('#first_name').val().trim();
+	var first_name = $('#first_name').val().trim();
 	var last_name = $('#last_name').val().trim();
 	var patronymic = $('#patronymic').val().trim();
 	if(checkbox_status === true){
-		full_name_buf = last_name + ' ' + firts_name;
+		full_name_buf = last_name + ' ' + first_name;
 	} else {
-		full_name_buf = last_name + ' ' + firts_name + ' ' + patronymic;
+		full_name_buf = last_name + ' ' + first_name + ' ' + patronymic;
 	}
 	console.log(full_name_buf);
 	return full_name_buf;
+}
+
+function getCardAccountNumber() {
+
 }
 
 function setInputFilter(textbox, inputFilter) {
