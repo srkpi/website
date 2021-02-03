@@ -16,11 +16,15 @@ var cohort = null;
 // Змінна для збереження статусу чекбокса.
 var checkbox_status = false;
 
-function checkBox(){
-	$('#patronymic_checkbox').on('click', function () {
-    	checkbox_status = $(this).is(':checked');
-	})
-	console.log(checkbox_status);
+function checkPatronymicCheckbox(){
+	document.getElementById('patronymic_checkbox').onchange = function(event) {
+		const checkboxVal = event.target.checked;
+		
+		// Якщо patronymic_checkbox натиснуто - поле patronymic деактивовано.
+		document.getElementById('patronymic').disabled = checkboxVal;
+		checkbox_status = checkboxVal;
+	};
+	return checkbox_status;
 }
 
 function checkSex() {
@@ -129,11 +133,17 @@ function validGroupName() {
 function onDownload() {
 	if (validGroupName() == true) {
 		var bank = $("input[name='bank_select']:checked").val();
-    	var OKR = $("input[name='study_status_radio']:checked").val();
-    	var departament = $("#department").val();
-    	var phone_number = $("#phone").val();
-    	var tax_number = $("#tax_number").val();
-    	var iban_number = bank == "ПриватБанк" ? tax_number : $("#iban_number").val();
+		console.log(bank);
+		var study_status = $("input[name='study_status_radio']").val();
+		console.log(study_status);
+		var departament = $("#department").val();
+		console.log(departament);
+		var phone_number = $("#phone").val();
+		console.log(phone_number);
+		var tax_number = $("#tax_number").val();
+		console.log(tax_number);
+		var iban_number = bank == "ПриватБанк" ? tax_number : $("#iban_number").val();
+		console.log(iban_number);
 		create_application(full_name, bank, OKR, cohort, departament, phone_number, tax_number, iban_number);
 	}
 }
