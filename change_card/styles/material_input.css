@@ -88,11 +88,19 @@
 }
 
 #group + .floater:before,
-#group:focus + .floater:before {
+#group:focus + .floater[data-content="Група"]:before {
   font-family: 'SF UI Display Medium';
   font-size: 1em;
   content: "Група";
 }
+
+#group + .floater[data-content="Рік"]:before,
+#group:focus + .floater[data-content="Рік"]:before {
+  font-family: 'SF UI Display Medium';
+  font-size: 1em;
+  content: "Рік";
+}
+
 
 #tax_number + .floater:before,
 #tax_number:focus + .floater:before {

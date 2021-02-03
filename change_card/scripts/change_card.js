@@ -28,6 +28,13 @@ function checkBank(){
 	
 	
 }
+$('#student_status').change(() => {
+	$('#group').next().attr('data-content', 'Група')
+});
+
+$('#aspirant_status').change(() => {
+	$('#group').next().attr('data-content', 'Рік')
+});
 
 function checkPatronymicCheckbox(){
 	document.getElementById('patronymic_checkbox').onchange = function(event) {
