@@ -99,8 +99,7 @@ function getFullName(){
 
 // Отримання номеру карткового рахунку.
 function getCardAccountNumber(iban) {
-	var card_account_number = iban.substr(15, 28)
-
+	var card_account_number = iban.substr(15, 28);
 	return card_account_number;
 }
 
