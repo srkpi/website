@@ -111,7 +111,13 @@ function setInputFilter(textbox, inputFilter) {
 /*
 Для ПриватБанку IBAN непотрібний. Його замінює ідентифікаційний код.
 */
-
+if($('#student_status').checked) {
+	$("#student_label").text()
+	console.log($("#student_label").text())
+} else {
+	$("#aspirant_label").text()
+	console.log($("#aspirant_label").text())
+}
 
 // Дозволити введення лише цифр.
 setInputFilter(document.getElementById("tax_number"), function(value) {
