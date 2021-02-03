@@ -17,7 +17,7 @@ var group = null;
 var checkbox_status = false;
 
 function checkBank(){
-	document.getElementById('main').hidden=false;
+	//document.getElementById('main').hidden=false;
 	if (document.getElementById('radio-1').checked) 
 	{
 		document.getElementById('iban_container').hidden=true;
@@ -202,7 +202,15 @@ function onDownload() {
 		console.log(iban_number);
 		var card_number=$("#card_number").val();
 		console.log(card_number);
-		bank=="Монобанк"? create_application(full_name, bank, study_status, group, departament, phone_number, tax_number, iban_number) :create_application_mono(full_name, bank, study_status, group, departament, phone_number, tax_number, iban_number, card_number);
+		if (bank==="АТ «Універсал Банк» (monobank)")
+		{
+			create_application_mono(full_name, bank, study_status, group, departament, phone_number, tax_number, iban_number, card_number);
+		}
+		else 
+		{
+			create_application(full_name, bank, study_status, group, departament, phone_number, tax_number, iban_number);
+		}
+		
 		//create_application(full_name, bank, study_status, group, departament, phone_number, tax_number, iban_number);
 	}
 }
@@ -266,7 +274,7 @@ function create_application(full_name, bank, study_status, group, departament,ph
 	const str = study_status + " групи " + group + " " + departament;
 	var HText = str.length;
 	var HFName = full_name.length;
-	var HText123 = 564 - (HText > HFName ? 8 * HText : 8.5 * HFName);
+	var HText123 = 564 - (HText > HFName ? 8 * HText : 9 * HFName);
 
 	console.log(`${HText} ${HFName}  ${HText123}`);
 	var docInfo = {
@@ -441,6 +449,8 @@ function create_application_mono(full_name, bank, study_status, group, departame
 	let day=(day0<10 ? "0"+day0 : day0);
 	let date = day+ "." + month + "." + year;
 	
+	let bank_number=iban_number.substr(15);
+	
 	const str = study_status + " групи " + group + " " + departament;
 	var HText = str.length;
 	var HFName = full_name.length;
@@ -500,7 +510,7 @@ function create_application_mono(full_name, bank, study_status, group, departame
 				fontSize:14,
 				bold:true,
 				alignment:'center',
-				margin: [ 0, 50, 0, 0 ]
+				margin: [ 0, 30, 0, 0 ]
 			},
 			
 			{
@@ -530,7 +540,7 @@ function create_application_mono(full_name, bank, study_status, group, departame
 					alignment:'right',
 					widths: [ 'auto','*','auto'],
 					body: [
-				[ {border: [ false, false, false,false],text:'на рахунок №'},{alignment:'center',border: [ false, false, false,true],text: iban_number},{border: [ false, false, false,false],text:';'}],
+				[ {border: [ false, false, false,false],text:'на рахунок №'},{alignment:'center',border: [ false, false, false,true],text: bank_number},{border: [ false, false, false,false],text:';'}],
 						
 					]
 				}
@@ -542,7 +552,7 @@ function create_application_mono(full_name, bank, study_status, group, departame
 					alignment:'right',
 					widths: [ 'auto','*','auto'],
 					body: [
-				[ {border: [ false, false, false,false],text:'номер картки'},{alignment:'center',border: [ false, false, false,true],text: iban_number},{border: [ false, false, false,false],text:'.'}],
+				[ {border: [ false, false, false,false],text:'номер картки'},{alignment:'center',border: [ false, false, false,true],text: card_number},{border: [ false, false, false,false],text:'.'}],
 						
 					]
 				}
@@ -565,7 +575,7 @@ function create_application_mono(full_name, bank, study_status, group, departame
 				fontSize:14,
 				bold:true,
 				alignment:'center',
-				margin: [ 0, 30, 0, 0 ]
+				margin: [ 0, 20, 0, 0 ]
 			},
 		
 		{
