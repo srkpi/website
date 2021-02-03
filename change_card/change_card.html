@@ -43,7 +43,7 @@
     <script type="text/javascript" src="scripts/change_card.js" defer></script>
     <script src="scripts/pdfmake.min.js"></script>
     <script src="scripts/vfs_fonts.js"></script>
-    <script src="scripts/jquery.mask.js"></script>
+    <script src="https://unpkg.com/imask"></script>
   </head>
   <body>
     <h1>Зміна банку для отримання стипендії</h1>
@@ -147,7 +147,6 @@
             id="student_label"
             class="left-switcher-label"
             for="student_status">
-            Студент
           </label>
 
           <input type="radio" id="aspirant_status" name="study_status_radio" />
@@ -155,7 +154,7 @@
             id="aspirant_label"
             class="right-switcher-label"
             for="aspirant_status"
-            >Аспірант</label
+            ></label
           >
         </div>
       </div>
@@ -221,9 +220,6 @@
       <button onclick="onDownload()" id="create_application">
         <i class="fas fa-file-pdf"></i>Завантажити заяву
       </button>
-      <!--
-                <button name="copy-to-clipboard" onclick="return copyToClipboard('olga_sereduk@ukr.net')" class="popover-buttons"><img src="content-copy.svg" alt="Копіювати"></button>
-            -->
     </div>
   </body>
 </html>

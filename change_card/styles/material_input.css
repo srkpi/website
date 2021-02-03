@@ -77,7 +77,7 @@
 #phone:focus + .floater:before {
   font-family: 'SF UI Display Medium';
   font-size: 1em;
-  content: "Номер телефону";
+  content: "Номер телефону (разом +380)";
 }
 
 #department + .floater:before,

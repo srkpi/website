@@ -12,7 +12,7 @@ var course_number = null;
 // Змінна для збереження стану того, з якого факультету/інституту заповнюють форму.
 var departament_name = null;
 // Змінна для збереження назви групи.
-var cohort = null;
+var group = null;
 // Змінна для збереження статусу чекбокса.
 var checkbox_status = false;
 
@@ -83,17 +83,17 @@ setInputFilter(document.getElementById("tax_number"), function(value) {
 
 function validGroupName() {
 	var ukr_letters = ['А','Б','В','Г','Ґ','Д','Е','Є','Ж','З','И','І','Ї','Й','К','Л','М','Н','О','П','Р','С','Т','У','Ф','Х','Ц','Ч','Ш','Щ','Ь','Ю','Я'];
-	cohort = $("#group").val().toLowerCase();
-	cohort = cohort.substring(0, 2).toUpperCase() + cohort.substring(2);
-	console.log(cohort);
-	console.log(isNaN(Number(cohort.substring(3, 5))));
-	if (cohort.includes('мн') || cohort.includes('мп')){
-		if (cohort.length == 7 
-			&& ukr_letters.includes(cohort[0]) 
-			&& ukr_letters.includes(cohort[1])
-			&& cohort[2] == '-' 
-			&& isNaN(Number(cohort.substring(3, 5))) != true 
-			&& getCourseNumber(cohort) <= 6) {
+	group = $("#group").val().toLowerCase();
+	group = group.substring(0, 2).toUpperCase() + group.substring(2);
+	console.log(group);
+	console.log(isNaN(Number(group.substring(3, 5))));
+	if (group.includes('мн') || group.includes('мп')){
+		if (group.length == 7 
+			&& ukr_letters.includes(group[0]) 
+			&& ukr_letters.includes(group[1])
+			&& group[2] == '-' 
+			&& isNaN(Number(group.substring(3, 5))) != true 
+			&& getCourseNumber(group) <= 6) {
 			return true;
 		} else {
 			alert("Error");
@@ -101,26 +101,26 @@ function validGroupName() {
 		}
 
 	} else{
-		if (cohort.includes('п')){
-			if (cohort.length == 6 
-				&& ukr_letters.includes(cohort[0])
-				&& ukr_letters.includes(cohort[1])
-				&& cohort[2] == '-' 
-				&& cohort[3] == 'п'
-				&& isNaN(Number(cohort.substring(4, 6))) != true 
-				&& getCourseNumber(cohort) <= 4) {
+		if (group.includes('п')){
+			if (group.length == 6 
+				&& ukr_letters.includes(group[0])
+				&& ukr_letters.includes(group[1])
+				&& group[2] == '-' 
+				&& group[3] == 'п'
+				&& isNaN(Number(group.substring(4, 6))) != true 
+				&& getCourseNumber(group) <= 4) {
 				return true;
 			} else {
 				alert("Error");
 				return false;
 			}
 		} else{
-			if (cohort.length == 5 
-				&& ukr_letters.includes(cohort[0])
-				&& ukr_letters.includes(cohort[1])
-				&& cohort[2] == '-' 
-				&& isNaN(Number(cohort.substring(3, 5))) != true 
-				&& getCourseNumber(cohort) <= 4) {
+			if (group.length == 5 
+				&& ukr_letters.includes(group[0])
+				&& ukr_letters.includes(group[1])
+				&& group[2] == '-' 
+				&& isNaN(Number(group.substring(3, 5))) != true 
+				&& getCourseNumber(group) <= 4) {
 					return true;		
 			} else {
 				alert("Error");
@@ -134,7 +134,7 @@ function onDownload() {
 	if (validGroupName() == true) {
 		var bank = $("input[name='bank_select']:checked").val();
 		console.log(bank);
-		var study_status = $("input[name='study_status_radio']").val();
+		var study_status =  $("input[name='study_status_radio'] > label").textContent;;
 		console.log(study_status);
 		var departament = $("#department").val();
 		console.log(departament);
@@ -144,7 +144,7 @@ function onDownload() {
 		console.log(tax_number);
 		var iban_number = bank == "ПриватБанк" ? tax_number : $("#iban_number").val();
 		console.log(iban_number);
-		create_application(full_name, bank, OKR, cohort, departament, phone_number, tax_number, iban_number);
+		create_application(full_name, bank, study_status, group, departament, phone_number, tax_number, iban_number);
 	}
 }
 
@@ -159,7 +159,7 @@ function copyToClipboard(text) {
 	return false;
 }
 
-function getCourseNumber(cohort) {
+function getCourseNumber(group) {
 	// https://stackoverflow.com/a/42089547
 	function removeCharacterAtIndex(value, index) {
 		return value.substring(0, index) + value.substring(index + 1);
@@ -168,17 +168,17 @@ function getCourseNumber(cohort) {
   	var current_month = new Date().getMonth();
 
   	// Якщо в шифрі групи є «п» (заповнює прискоренник), то видаляємо цю букву.
-	if (cohort[3] == 'п') {
-		cohort = removeCharacterAtIndex(cohort, 3);
+	if (group[3] == 'п') {
+		group = removeCharacterAtIndex(group, 3);
 	}
 	/* Якщо номер з шифру групи більше, ніж остання цифра поточного року,
 	то рік потрібно збільшити на 10 */
-  	if (Number(cohort[3]) > last_number_current_year){
+  	if (Number(group[3]) > last_number_current_year){
     		last_number_current_year += 10;
   	}
 	
 	/* Номер курсу - це різниця останньої цифри року та першої цифри шифру групи */
-  	var course_number = last_number_current_year - Number(cohort[3]);
+  	var course_number = last_number_current_year - Number(group[3]);
 	
 	/* Якщо поточний місяць входить в діапазон липень-грудень, то номер
 	курсу потрібно збільшити на 1 */
@@ -187,14 +187,14 @@ function getCourseNumber(cohort) {
   	}
 	/* Якщо шифр групи відповідає магістратурі, то номер курсу перевести
 	з бакалаврату на магістратуру (додати 4 до номеру курсу) */
-	if (cohort.includes('мн') || cohort.includes('мп')) {
+	if (group.includes('мн') || group.includes('мп')) {
 		course_number += 4;
 	}
 
 	return course_number;
 }
 
-function create_application(full_name, bank, OKR, cohort, departament,phone_number, tax_number, iban_number) { 
+function create_application(full_name, bank, study_status, group, departament,phone_number, tax_number, iban_number) { 
 	
 	let today = new Date(); 
 	let year = today.getFullYear();
@@ -204,7 +204,7 @@ function create_application(full_name, bank, OKR, cohort, departament,phone_numb
 	let day=(day0<10 ? "0"+day0 : day0);
 	let date = day+"."+month+"."+year+" р."
 	
-	const str = OKR + " групи " + cohort + " " + departament;
+	const str = study_status + " групи " + group + " " + departament;
 	var HText = str.length;
 	var HFName = full_name.length;
 	var HText123 = 564 - (HText > HFName ? 8 * HText : 8.5 * HFName);
@@ -242,7 +242,7 @@ function create_application(full_name, bank, OKR, cohort, departament,phone_numb
 				//pageBreak:'after'
 			},
 			{
-				text: OKR+" групи "+cohort+" "+departament ,
+				text: study_status + " групи " + group + " " +departament ,
 				fontSize:14,
 				margin: [ HText123, 10, 0, 0 ]
 				//pageBreak:'after'
@@ -369,8 +369,6 @@ function create_application(full_name, bank, OKR, cohort, departament,phone_numb
     	italics: 'fonts/ArialNarrow-Italic.ttf',
     	bolditalics: 'fonts/ArialNarrow-BoldItalic.ttf'
     } */
-
-   
     	Roboto: {
     		normal: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/fonts/Roboto/Roboto-Regular.ttf',
     		bold: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/fonts/Roboto/Roboto-Medium.ttf',
