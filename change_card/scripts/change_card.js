@@ -185,6 +185,15 @@ function getCourseNumber(cohort) {
 }
 
 function create_application(full_name, bank, OKR, cohort, departament,phone_number, tax_number, iban_number) { 
+	
+	let today = new Date(); 
+	let year = today.getFullYear();
+	let month0 = today.getMonth()+1;
+	let month = (month0 < 10 ? "0"+month0 : month0);
+	let day0 = today.getDate();
+	let day=(day0<10 ? "0"+day0 : day0);
+	let date = day+"."+month+"."+year+" р."
+	
 	const str = OKR + " групи " + cohort + " " + departament;
 	var HText = str.length;
 	var HFName = full_name.length;
@@ -312,7 +321,7 @@ function create_application(full_name, bank, OKR, cohort, departament,phone_numb
 					//alignment:'right',
 					widths: [ 'auto','*','auto'],
 					body: [
-				[{alignment:'center',border: [ false, false, false,false],text:'____________________\n(дата)'},{border: [ false, false, false,false],text:''},{alignment:'center',border: [ false, false, false,false],text: '____________________\n(підпис)'}],
+				[{alignment:'center',border: [ false, false, false,false],text:date},{border: [ false, false, false,false],text:''},{alignment:'center',border: [ false, false, false,false],text: '____________________\n(підпис)'}],
 									
 					]
 				}
