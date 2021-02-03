@@ -31,10 +31,10 @@
 }
 
 .input-text.touched + .floater:before,
-#surname:focus + .floater:before,
-#surname:not(:placeholder-shown) + .floater:before,
-#name:focus + .floater:before,
-#name:not(:placeholder-shown) + .floater:before,
+#last_name:focus + .floater:before,
+#last_name:not(:placeholder-shown) + .floater:before,
+#first_name:focus + .floater:before,
+#first_name:not(:placeholder-shown) + .floater:before,
 #patronymic:focus + .floater:before,
 #patronymic:not(:placeholder-shown) + .floater:before,
 #phone:focus + .floater:before,
@@ -52,15 +52,15 @@
   font-size: 14px;
 }
 
-#surname + .floater:before,
-#surname:focus + .floater:before {
+#last_name + .floater:before,
+#last_name:focus + .floater:before {
   font-family: 'SF UI Display Medium';
   font-size: 1em;
   content: "Прізвище";
 }
 
-#name + .floater:before,
-#name:focus + .floater:before {
+#first_name + .floater:before,
+#first_name:focus + .floater:before {
   font-family: 'SF UI Display Medium';
   font-size: 1em;
   content: "Ім'я";

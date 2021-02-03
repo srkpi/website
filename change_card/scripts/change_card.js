@@ -40,24 +40,19 @@ function timeoutCheckSex(){
 
 timeoutCheckSex();
 
+// Конкатенація ПІБ
 function getFullName(){
-	var name = $('#name').val().trim();
-	var surname = $('#surname').val().trim();
+	var firts_name = $('#first_name').val().trim();
+	var last_name = $('#last_name').val().trim();
 	var patronymic = $('#patronymic').val().trim();
 	if(checkbox_status === true){
-		full_name = surname + ' ' + name;
+		full_name_buf = last_name + ' ' + firts_name;
 	} else {
-		full_name = surname + ' ' + name + ' ' + patronymic;
+		full_name_buf = last_name + ' ' + firts_name + ' ' + patronymic;
 	}
-	console.log(full_name);
+	console.log(full_name_buf);
+	return full_name_buf;
 }
-
-// Маска для вводу номера телефону
-document.getElementById('phone').addEventListener('input', function (e) {
-	var x = e.target.value.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
-	e.target.value = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
-});
-
 
 function setInputFilter(textbox, inputFilter) {
 	["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop"].forEach(function(event) {
@@ -76,22 +71,13 @@ function setInputFilter(textbox, inputFilter) {
 	});
 }
 
-// 
+// Фіксація 10 цифр для вводу ідентифікаційного коду
 setInputFilter(document.getElementById("tax_number"), function(value) {
 	return /^\d*$/.test(value); });
 
-function correctInput(){
-    var bank = $("input[name='chkBank']:checked").val();
-    var OKR = $("input[name='chkOKR']:checked").val();
-    var departament = $("#department").val();
-    var phone_number = $("#phone").val();
-    var tax_number = $("#tax_number").val();
-    var iban_number = bank == "ПриватБанк" ? tax_number : $("#iban_number").val();
-	create_application(full_name, bank, OKR, cohort, departament, phone_number, tax_number, iban_number);
-}
 // Формування POST запиту в Google Форму. https://github.com/RGZorzo/Googleformpost/blob/master/script.js
 
-function onDownload() {
+function validGroupName() {
 	var ukr_letters = ['А','Б','В','Г','Ґ','Д','Е','Є','Ж','З','И','І','Ї','Й','К','Л','М','Н','О','П','Р','С','Т','У','Ф','Х','Ц','Ч','Ш','Щ','Ь','Ю','Я'];
 	cohort = $("#group").val().toLowerCase();
 	cohort = cohort.substring(0, 2).toUpperCase() + cohort.substring(2);
@@ -104,8 +90,11 @@ function onDownload() {
 			&& cohort[2] == '-' 
 			&& isNaN(Number(cohort.substring(3, 5))) != true 
 			&& getCourseNumber(cohort) <= 6) {
-			correctInput();
-		} else alert("Error");
+			return true;
+		} else {
+			alert("Error");
+			return false;
+		}
 
 	} else{
 		if (cohort.includes('п')){
@@ -116,8 +105,11 @@ function onDownload() {
 				&& cohort[3] == 'п'
 				&& isNaN(Number(cohort.substring(4, 6))) != true 
 				&& getCourseNumber(cohort) <= 4) {
-				correctInput();
-			} else alert("Error");
+				return true;
+			} else {
+				alert("Error");
+				return false;
+			}
 		} else{
 			if (cohort.length == 5 
 				&& ukr_letters.includes(cohort[0])
@@ -125,24 +117,26 @@ function onDownload() {
 				&& cohort[2] == '-' 
 				&& isNaN(Number(cohort.substring(3, 5))) != true 
 				&& getCourseNumber(cohort) <= 4) {
-				correctInput();			
-			} else alert("Error");
+					return true;		
+			} else {
+				alert("Error");
+				return false;
+			}
 		}
 	}
-	getFullName();
 }
 
-    // $.post('change_card.php', {
-        // full_name:full_name, 
-        // bank: bank,
-        // OKR: OKR,
-        // cohort: cohort,
-        // phone_number: phone_number,
-        // tax_number: tax_number,
-        // iban_number,
-        // }, 
-
-	 // ValidPhone();	
+function onDownload() {
+	if (validGroupName() == true) {
+		var bank = $("input[name='bank_select']:checked").val();
+    	var OKR = $("input[name='study_status_radio']:checked").val();
+    	var departament = $("#department").val();
+    	var phone_number = $("#phone").val();
+    	var tax_number = $("#tax_number").val();
+    	var iban_number = bank == "ПриватБанк" ? tax_number : $("#iban_number").val();
+		create_application(full_name, bank, OKR, cohort, departament, phone_number, tax_number, iban_number);
+	}
+}
 
 // Копіювання e-mail в буфер обміну.
 function copyToClipboard(text) {
@@ -153,17 +147,6 @@ function copyToClipboard(text) {
 	document.execCommand("copy");
 	document.body.removeChild(dummy);
 	return false;
-}
-
-// Створення JSON для подальшої аналітики.
-function createJSON(gender, OKR, cohort, department) {
-	// Формування JSON під студентство.
-	var obj = '{'
-		'"gender" : "Raj",'
-		'"OKR" : "",'
-		+
-	   +'}';
-	// Формування JSON під аспірантства.
 }
 
 function getCourseNumber(cohort) {
