@@ -36,13 +36,6 @@ function checkBank(){
 	
 	
 }
-$('#student_status').change(() => {
-	$('#group').next().attr('data-content', 'Група')
-});
-
-$('#aspirant_status').change(() => {
-	$('#group').next().attr('data-content', 'Рік')
-});
 
 function checkPatronymicCheckbox(){
 	document.getElementById('patronymic_checkbox').onchange = function(event) {
@@ -75,18 +68,13 @@ function checkSex() {
 	var sex = $('input[name=gender_status_radio]:checked').val();
 }
 
-function checkStudy() {
-	if (document.getElementById('aspirant_status').checked) 
-	{
-	  study_status=document.getElementById('aspirant_label').val();
+function checkStudyStatus() {
+	if($('#student_status').is(':checked')) {
+		$("#student_label").text()
+	} else {
+		$("#aspirant_label").text()
 	}
-	else if (document.getElementById('student_status').checked)
-	{
-	  study_status=document.getElementById('student_label').val();
-	  
-	}
-	
-	var sex = $('input[name=gender_status_radio]:checked').val();
+	//var sex = $('input[name=gender_status_radio]:checked').val();
 }
 
 function timeoutCheckSex(){
@@ -95,7 +83,7 @@ function timeoutCheckSex(){
 
 timeoutCheckSex();
 
-// Конкатенація ПІБ
+// Конкатенація ПІБ.
 function getFullName(){
 	var first_name = $('#first_name').val().trim();
 	var last_name = $('#last_name').val().trim();
@@ -109,8 +97,11 @@ function getFullName(){
 	return full_name_buf;
 }
 
-function getCardAccountNumber() {
+// Отримання номеру карткового рахунку.
+function getCardAccountNumber(iban) {
+	var card_account_number = iban.substr(15, 28)
 
+	return card_account_number;
 }
 
 function setInputFilter(textbox, inputFilter) {
