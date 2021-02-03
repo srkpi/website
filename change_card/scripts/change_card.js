@@ -28,14 +28,23 @@ function checkPatronymicCheckbox(){
 }
 
 function checkSex() {
-	var sex = $('input[name=gender_status_radio]:checked').val();
-	if(sex === 'Male'){
-		document.getElementById('aspirant_label').innerHTML = 'аспіранта';
-		document.getElementById('student_label').innerHTML = 'студента';
-	} else {
-		document.getElementById('aspirant_label').innerHTML = 'аспірантки';
-		document.getElementById('student_label').innerHTML = 'студентки';
+	if (document.getElementById('male_status').checked) 
+	{
+	  document.getElementById('aspirant_label').innerHTML = 'аспіранта';
+	  document.getElementById('student_label').innerHTML = 'студента';
+	  document.getElementById('student_label').style = "display: align: center";
+	  document.getElementById('aspirant_label').style = "display: align: center";
 	}
+	else if (document.getElementById('female_status').checked)
+	{
+	  document.getElementById('aspirant_label').innerHTML = 'аспірантки';
+	  document.getElementById('student_label').innerHTML = 'студентки';
+	  document.getElementById('student_label').style = "display: align: center";
+	  document.getElementById('aspirant_label').style = "display: align: center";
+	  
+	}
+	
+	var sex = $('input[name=gender_status_radio]:checked').val();
 }
 
 function timeoutCheckSex(){
@@ -75,7 +84,12 @@ function setInputFilter(textbox, inputFilter) {
 	});
 }
 
-// Фіксація 10 цифр для вводу ідентифікаційного коду
+/*
+Для ПриватБанку IBAN непотрібний. Його замінює ідентифікаційний код.
+*/
+
+
+// Дозволити введення лише цифр.
 setInputFilter(document.getElementById("tax_number"), function(value) {
 	return /^\d*$/.test(value); });
 
