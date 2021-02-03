@@ -100,7 +100,7 @@
 #group:focus + .floater[data-content="Рік"]:before {
   font-family: 'SF UI Display Medium';
   font-size: 1em;
-  content: "Рік";
+  content: "Рік вступу";
 }
 
 
