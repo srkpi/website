@@ -115,7 +115,7 @@
 #iban_number:focus + .floater:before {
   font-family: 'SF UI Display Medium';
   font-size: 1em;
-  content: "IBAN рахунку";
+  content: "IBAN рахунок";
 }
 
 #card_number + .floater:before,
