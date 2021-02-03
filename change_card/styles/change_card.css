@@ -1,0 +1,196 @@
+@font-face {
+  font-family: "SF UI Display Ultralight";
+  font-style: normal;
+  font-weight: normal;
+  src: url("fonts/sf-ui-display-ultralight.woff") format("woff");
+}
+
+@font-face {
+  font-family: "SF UI Display Thin";
+  font-style: normal;
+  font-weight: normal;
+  src: url("fonts/sf-ui-display-thin.woff") format("woff");
+}
+
+@font-face {
+  font-family: "SF UI Display Light";
+  font-style: normal;
+  font-weight: normal;
+  src: url("fonts/sf-ui-display-light.woff") format("woff");
+}
+
+@font-face {
+  font-family: "SF UI Display Medium";
+  font-style: normal;
+  font-weight: normal;
+  src: url("fonts/sf-ui-display-medium.woff") format("woff");
+}
+
+@font-face {
+  font-family: "SF UI Display Semibold";
+  font-style: normal;
+  font-weight: normal;
+  src: url("fonts/sf-ui-display-semibold.woff") format("woff");
+}
+
+@font-face {
+  font-family: "SF UI Display Bold";
+  font-style: normal;
+  font-weight: normal;
+  src: url("fonts/sf-ui-display-bold.woff") format("woff");
+}
+
+@font-face {
+  font-family: "SF UI Display Heavy";
+  font-style: normal;
+  font-weight: normal;
+  src: url("fonts/sf-ui-display-heavy.woff") format("woff");
+}
+
+@font-face {
+  font-family: "SF UI Display Black";
+  font-style: normal;
+  font-weight: normal;
+  src: url("fonts/sf-ui-display-black.woff") format("woff");
+}
+
+body {
+  margin: 2%;
+}
+
+form {
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@media screen and (max-width: 600px) {
+  form {
+    width: 100%;
+  }
+}
+
+h1 {
+  font-family: "SF UI Display Black";
+  font-size: 2.5em;
+  margin-top: 0px;
+  margin-block-end: 0.25em;
+}
+
+h2 {
+  font-family: "SF UI Display Bold";
+  font-size: 1.5em;
+  margin-top: 0px;
+  margin-block-end: 0.4em;
+}
+
+form h2 {
+    margin-block-start: 0.4em;
+}
+
+.select-statuses {
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 600px) {
+  .select-statuses {
+    flex-direction: column;
+  }
+}
+
+.switcher {
+  color: #fff;
+  justify-items: center;
+  width: 230px;
+  height: 27px;
+  display: inline-grid;
+  grid-gap: 1px;
+  grid-template-columns: 1fr 1fr;
+  margin: 10px;
+}
+
+.switcher input[type="radio"] {
+  position: absolute;
+  visibility: hidden;
+  display: none;
+}
+
+.switcher label {
+  color: #1329e6;
+  border: solid 2px #1329e6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-weight: bold;
+  width: 100%;
+  height: 100%;
+}
+
+.switcher .right-switcher-label {
+  border-radius: 0px 10px 10px 0px;
+}
+
+.switcher .left-switcher-label {
+  border-radius: 10px 0px 0px 10px;
+}
+
+.switcher input[type="radio"]:checked + label {
+  background: #1329e6;
+  color: #ffffff;
+}
+
+.switcher label + input[type="radio"] + label {
+  border-left: solid 4px lighten(#1329e6, 60%);
+}
+
+.bank_selection {
+  font-family: "SF UI Display Semibold";
+}
+
+.name {
+  font-family: "SF UI Display Semibold";
+}
+
+input[type="radio"] {
+  margin-left: 0px;
+}
+
+input[type="radio"] + label {
+  font-family: "SF UI Display Medium";
+  font-size: 14px;
+}
+
+#create_application {
+  width: 300px;
+  height: 60px;
+  font-family: "SF UI Display Medium";
+  font-weight: 700;
+  font-size: 20px;
+  text-transform: uppercase;
+  font-weight: 400;
+  text-align: center;
+  color: #000;
+  background-color: rgb(171, 210, 250);
+  border: none;
+  border-radius: 45px;
+  border-width: 5px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.75s ease;
+  cursor: pointer;
+  outline: 5px;
+}
+
+#create_application:hover {
+  background-color: #1329e6;
+  box-shadow: 0px 15px 20px rgba(25, 26, 25, 0.4);
+  color: #fff;
+}
+
+.fa-file-pdf {
+  font-size: 22px;
+  margin-right: 18px;
+}

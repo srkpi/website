@@ -1,0 +1,109 @@
+.input-text-container {
+  position: relative;
+  margin-top: 20px;
+}
+
+.input-text {
+  transition: 0.25s border ease-in-out;
+  border-radius: 0 !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background: transparent;
+  border: 0;
+  border-bottom: 2px solid #444;
+  font-size: 20px;
+  width: 100%;
+  padding: 0;
+}
+
+.input-text:focus {
+  border-bottom-color: #1329e6;
+}
+
+.input-text:not(.touched) + .floater:before {
+  display: block;
+  position: absolute;
+  top: 0;
+  font-size: 20px;
+  color: #666;
+  pointer-events: none;
+  transition: 0.25s all ease-in-out;
+}
+
+.input-text.touched + .floater:before,
+#last_name:focus + .floater:before,
+#last_name:not(:placeholder-shown) + .floater:before,
+#first_name:focus + .floater:before,
+#first_name:not(:placeholder-shown) + .floater:before,
+#patronymic:focus + .floater:before,
+#patronymic:not(:placeholder-shown) + .floater:before,
+#phone:focus + .floater:before,
+#phone:not(:placeholder-shown) + .floater:before,
+#department:focus + .floater:before,
+#department:not(:placeholder-shown) + .floater:before,
+#group:focus + .floater:before,
+#group:not(:placeholder-shown) + .floater:before,
+#tax_number:focus + .floater:before,
+#tax_number:not(:placeholder-shown) + .floater:before,
+#iban_number:focus + .floater:before,
+#iban_number:not(:placeholder-shown) + .floater:before {
+  position: absolute;
+  top: -20px;
+  font-size: 14px;
+}
+
+#last_name + .floater:before,
+#last_name:focus + .floater:before {
+  font-family: 'SF UI Display Medium';
+  font-size: 1em;
+  content: "Прізвище";
+}
+
+#first_name + .floater:before,
+#first_name:focus + .floater:before {
+  font-family: 'SF UI Display Medium';
+  font-size: 1em;
+  content: "Ім'я";
+}
+
+#patronymic + .floater:before,
+#patronymic:focus + .floater:before {
+  font-family: 'SF UI Display Medium';
+  font-size: 1em;
+  content: "По-батькові";
+}
+
+#phone + .floater:before,
+#phone:focus + .floater:before {
+  font-family: 'SF UI Display Medium';
+  font-size: 1em;
+  content: "Номер телефону";
+}
+
+#department + .floater:before,
+#department:focus + .floater:before {
+  font-family: 'SF UI Display Medium';
+  font-size: 1em;
+  content: "Акронім назви факультету/інституту";
+}
+
+#group + .floater:before,
+#group:focus + .floater:before {
+  font-family: 'SF UI Display Medium';
+  font-size: 1em;
+  content: "Група";
+}
+
+#tax_number + .floater:before,
+#tax_number:focus + .floater:before {
+  font-family: 'SF UI Display Medium';
+  font-size: 1em;
+  content: "Ідентифікаційний код";
+}
+
+#iban_number + .floater:before,
+#iban_number:focus + .floater:before {
+  font-family: 'SF UI Display Medium';
+  font-size: 1em;
+  content: "IBAN рахунку";
+}
