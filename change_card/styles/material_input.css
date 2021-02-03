@@ -46,7 +46,9 @@
 #tax_number:focus + .floater:before,
 #tax_number:not(:placeholder-shown) + .floater:before,
 #iban_number:focus + .floater:before,
-#iban_number:not(:placeholder-shown) + .floater:before {
+#iban_number:not(:placeholder-shown) + .floater:before,
+#card_number:focus + .floater:before,
+#card_number:not(:placeholder-shown) + .floater:before{
   position: absolute;
   top: -20px;
   font-size: 14px;
@@ -114,4 +116,11 @@
   font-family: 'SF UI Display Medium';
   font-size: 1em;
   content: "IBAN рахунку";
+}
+
+#card_number + .floater:before,
+#card_number:focus + .floater:before {
+  font-family: 'SF UI Display Medium';
+  font-size: 1em;
+  content: "Номер картки";
 }

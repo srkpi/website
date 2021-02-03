@@ -55,7 +55,7 @@
           <label for="radio-1" class="radio-label">ПриватБанк</label>
         </div>
         <div class="radio">
-          <input id="radio-2" name="bank_select" type="radio" onclick="checkBank()" value="Monobank"/>
+          <input id="radio-2" name="bank_select" type="radio" onclick="checkBank()" value="АТ «Універсал Банк» (monobank)""/>
           <label for="radio-2" class="radio-label">Монобанк</label>
         </div>
         <div class="radio">
@@ -147,7 +147,8 @@
             id="student_label"
             style = 'display: none; ';
             class="left-switcher-label"
-            for="student_status">
+            for="student_status"
+			onclick="checkStudy();">
           </label>
 
           <input type="radio" id="aspirant_status" name="study_status_radio" />
@@ -156,7 +157,8 @@
             style = 'display: none; ';
             class="right-switcher-label"
             for="aspirant_status"
-            ></label
+            onclick="checkStudy();"
+			></label
           >
         </div>
       </div>
@@ -206,7 +208,18 @@
         <div class="floater"></div>
       </div>
 
-<div class="input-text-container" id="iban_container">
+	<div class="input-text-container" id="card_number_container">
+        <input
+        type="text"
+        class="input-text"
+        placeholder=" "
+        id="card_number"
+        maxlength="16"
+        />
+        <div class="floater"></div>
+      </div>
+
+	<div class="input-text-container" id="iban_container">
         <input
         type="text"
         class="input-text"

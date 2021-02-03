@@ -2,7 +2,7 @@
 // Змінна для визначення, чи заповнює форму прискоренник.
 var associate_degree = false;
 // Змінна для збереження стану заповнювача заяви (студентство/аспірантство).
-var academic_degree = null;
+var study_status = null;
 // Змінна для збереження стану того, для якого банку формують заяву.
 var bank_name = null;
 // Змінна для збереження повного ПІБ того, хто заповнює заяву.
@@ -20,10 +20,17 @@ function checkBank(){
 	if (document.getElementById('radio-1').checked) 
 	{
 		document.getElementById('iban_container').hidden=true;
+		document.getElementById('card_number_container').hidden=true;
+	}
+	else if (document.getElementById('radio-2').checked)
+	{
+		document.getElementById('card_number_container').hidden=false;
+		document.getElementById('iban_container').hidden=false;
 	}
 	else 
 	{
 		document.getElementById('iban_container').hidden=false;
+		document.getElementById('card_number_container').hidden=true;
 	}
 	
 	
@@ -57,10 +64,24 @@ function checkSex() {
 	}
 	else if (document.getElementById('female_status').checked)
 	{
-	  document.getElementById('aspirant_label').innerHTML = 'аспірантки';
+	  document.getElementById('aspirant_status').innerHTML = 'аспірантки';
 	  document.getElementById('student_label').innerHTML = 'студентки';
 	  document.getElementById('student_label').style = "display: align: center";
 	  document.getElementById('aspirant_label').style = "display: align: center";
+	  
+	}
+	
+	var sex = $('input[name=gender_status_radio]:checked').val();
+}
+
+function checkStudy() {
+	if (document.getElementById('aspirant_status').checked) 
+	{
+	  study_status=document.getElementById('aspirant_label').val();
+	}
+	else if (document.getElementById('student_status').checked)
+	{
+	  study_status=document.getElementById('student_label').val();
 	  
 	}
 	
@@ -178,7 +199,7 @@ function onDownload() {
 	if (validGroupName() == true) {
 		var bank = $("input[name='bank_select']:checked").val();
 		console.log(bank);
-		var study_status =  $("input[name='study_status_radio'] > label").textContent;;
+		var study_status =  $("input[name='study_status_radio'] :checked").val();
 		console.log(study_status);
 		var departament = $("#department").val();
 		console.log(departament);
@@ -188,7 +209,10 @@ function onDownload() {
 		console.log(tax_number);
 		var iban_number = bank == "ПриватБанк" ? tax_number : $("#iban_number").val();
 		console.log(iban_number);
-		create_application(full_name, bank, study_status, group, departament, phone_number, tax_number, iban_number);
+		var card_number=$("#card_number").val();
+		console.log(card_number);
+		bank=="Монобанк"? create_application(full_name, bank, study_status, group, departament, phone_number, tax_number, iban_number) :create_application_mono(full_name, bank, study_status, group, departament, phone_number, tax_number, iban_number, card_number);
+		//create_application(full_name, bank, study_status, group, departament, phone_number, tax_number, iban_number);
 	}
 }
 
@@ -238,7 +262,7 @@ function getCourseNumber(group) {
 	return course_number;
 }
 
-function create_application(bank, study_status, group, departament,phone_number, tax_number, iban_number) { 
+function create_application(full_name, bank, study_status, group, departament,phone_number, tax_number, iban_number) { 
 	full_name = getFullName();
 	let today = new Date(); 
 	let year = today.getFullYear();
