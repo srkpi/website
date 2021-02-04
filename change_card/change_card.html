@@ -47,25 +47,15 @@
   </head>
   <body>
     <h1>Зміна банку для отримання стипендії</h1>
-    <h2>Обери банк, в який хочеш перейти</h2>
+    <label for="bank_select">Обери банк, в який хочеш перейти</label>
     <form>
       <div class="bank-container">
-        <div class="radio">
-          <input id="radio-1" name="bank_select" type="radio" onclick="checkBank()" value="АТ КБ «ПРИВАТБАНК»"/>
-          <label for="radio-1" class="radio-label">ПриватБанк</label>
-        </div>
-        <div class="radio">
-          <input id="radio-2" name="bank_select" type="radio" onclick="checkBank()" value="АТ «Універсал Банк» (monobank)""/>
-          <label for="radio-2" class="radio-label">Монобанк</label>
-        </div>
-        <div class="radio">
-          <input id="radio-3" name="bank_select" type="radio" onclick="checkBank()" value="ВАТ «Альфа Банк»"/>
-          <label for="radio-3" class="radio-label">Альфа-Банк</label>
-        </div>
-        <div class="radio">
-          <input id="radio-4" name="bank_select" type="radio" onclick="checkBank()" value="АТ «Ощадбанк»"/>
-          <label for="radio-4" class="radio-label">Ощадбанк</label>
-        </div>
+        <select name="bank_select" id="bank_select">
+          <option value="АТ КБ «ПРИВАТБАНК»">ПриватБанк</option>
+          <option value="АТ «Універсал Банк» (monobank)">Монобанк</option>
+          <option value="ВАТ «Альфа Банк»">Альфа-Банк</option>
+          <option value="АТ «Ощадбанк»">Ощадбанк</option>
+        </select>
       </div>
       
 
