@@ -35,6 +35,15 @@ function checkBank(){
 	}
 	
 	
+// Функція для отримання статусу навчання (студент/аспірант, студентка, аспірантка)
+function checkStudyStatus(){
+	if(document.getElementById('student_status').checked) {
+  		var study_status = document.getElementById('student_status').value;
+  		console.log(study_status);
+	} else if(document.getElementById('aspirant_status').checked) {
+  		var study_status = document.getElementById('aspirant_status').value;
+  		console.log(study_status);
+	}
 }
 
 function checkPatronymicCheckbox(){
@@ -73,6 +82,16 @@ function checkStudyStatus() {
 		$("#student_label").text()
 	} else {
 		$("#aspirant_label").text()
+	if(sex === 'Male'){
+		document.getElementById('aspirant_label').innerHTML = 'аспіранта';
+		document.getElementById('student_label').innerHTML = 'студента';
+		document.getElementById('student_status').value = 'студента';
+		document.getElementById('aspirant_status').value = 'аспіранта';
+	} else {
+		document.getElementById('aspirant_label').innerHTML = 'аспірантки';
+		document.getElementById('student_label').innerHTML = 'студентки';
+		document.getElementById('student_status').value = 'студентки';
+		document.getElementById('aspirant_status').value = 'аспірантки';
 	}
 	//var sex = $('input[name=gender_status_radio]:checked').val();
 }
@@ -625,5 +644,3 @@ function create_application_mono(full_name, bank, study_status, group, departame
 
 	pdfMake.createPdf(docInfo,null,fonts).download('Заява на зміну картки.pdf');
 }
-
-
