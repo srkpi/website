@@ -16,6 +16,17 @@ var cohort = null;
 // Змінна для збереження статусу чекбокса.
 var checkbox_status = false;
 
+// Функція для отримання статусу навчання (студент/аспірант, студентка, аспірантка)
+function checkStudyStatus(){
+	if(document.getElementById('student_status').checked) {
+  		var study_status = document.getElementById('student_status').value;
+  		console.log(study_status);
+	} else if(document.getElementById('aspirant_status').checked) {
+  		var study_status = document.getElementById('aspirant_status').value;
+  		console.log(study_status);
+	}
+}
+
 function checkPatronymicCheckbox(){
 	document.getElementById('patronymic_checkbox').onchange = function(event) {
 		const checkboxVal = event.target.checked;
@@ -32,9 +43,13 @@ function checkSex() {
 	if(sex === 'Male'){
 		document.getElementById('aspirant_label').innerHTML = 'аспіранта';
 		document.getElementById('student_label').innerHTML = 'студента';
+		document.getElementById('student_status').value = 'студента';
+		document.getElementById('aspirant_status').value = 'аспіранта';
 	} else {
 		document.getElementById('aspirant_label').innerHTML = 'аспірантки';
 		document.getElementById('student_label').innerHTML = 'студентки';
+		document.getElementById('student_status').value = 'студентки';
+		document.getElementById('aspirant_status').value = 'аспірантки';
 	}
 }
 
