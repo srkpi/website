@@ -142,7 +142,12 @@
 
         <!-- Визначення студента/аспіранта -->
         <div class="study_status switcher">
-          <input type="radio" id="student_status" name="study_status_radio" />
+          <input 
+            type="radio" 
+            id="student_status" 
+            name="study_status_radio" 
+            onclick="checkStudyStatus();" 
+            value="студентки"/>
           <label
             id="student_label"
             class="left-switcher-label"
@@ -150,7 +155,12 @@
             Студент
           </label>
 
-          <input type="radio" id="aspirant_status" name="study_status_radio" />
+          <input 
+            type="radio" 
+            id="aspirant_status" 
+            name="study_status_radio" 
+            onclick="checkStudyStatus();" 
+            value="аспірантки"/>
           <label
             id="aspirant_label"
             class="right-switcher-label"
