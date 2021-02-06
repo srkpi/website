@@ -41,13 +41,13 @@ function checkPatronymicCheckbox(){
 function checkSex() {
 	var sex = $('input[name=gender_status_radio]:checked').val();
 	if(sex === 'Male'){
-		document.getElementById('aspirant_label').innerHTML = 'аспіранта';
-		document.getElementById('student_label').innerHTML = 'студента';
+		document.getElementById('aspirant_label').innerHTML = 'аспірант';
+		document.getElementById('student_label').innerHTML = 'студент';
 		document.getElementById('student_status').value = 'студента';
 		document.getElementById('aspirant_status').value = 'аспіранта';
 	} else {
-		document.getElementById('aspirant_label').innerHTML = 'аспірантки';
-		document.getElementById('student_label').innerHTML = 'студентки';
+		document.getElementById('aspirant_label').innerHTML = 'аспірантка';
+		document.getElementById('student_label').innerHTML = 'студентка';
 		document.getElementById('student_status').value = 'студентки';
 		document.getElementById('aspirant_status').value = 'аспірантки';
 	}
