@@ -1,186 +1,66 @@
 <html>
-  <head>
-    <title>
-      Формування заяви для зміни картки | Студрада КПІ ім. Ігоря Сікорського
-    </title>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" type="text/css" href="styles/change_card.css" />
-    <link rel="stylesheet" type="text/css" href="styles/material_input.css" />
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
-      rel="stylesheet"
-    />
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="favicon_package/apple-touch-icon.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="favicon_package/favicon-32x32.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="favicon_package/favicon-16x16.png"
-    />
-    <!-- <link rel="manifest" href="favicon_package/site.webmanifest"> -->
-    <link
-      rel="mask-icon"
-      href="favicon_package/safari-pinned-tab.svg"
-      color="#5bbad5"
-    />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="msapplication-TileColor" content="#da532c" />
-    <meta name="theme-color" content="#ffffff" />
-    <script
-      type="text/javascript"
-      src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"
-    ></script>
-    <script type="text/javascript" src="scripts/change_card.js" defer></script>
-    <script src="scripts/pdfmake.min.js"></script>
-    <script src="scripts/vfs_fonts.js"></script>
-    <script src="https://unpkg.com/imask"></script>
-  </head>
-  <body>
-    <h1>Зміна банку для отримання стипендії</h1>
-    <label for="bank_select">Обери банк, в який хочеш перейти</label>
-    <form>
-      <div class="bank-container">
-        <select name="bank_select" id="bank_select">
-          <option value="АТ КБ «ПРИВАТБАНК»">ПриватБанк</option>
-          <option value="АТ «Універсал Банк» (monobank)">Монобанк</option>
-          <option value="ВАТ «Альфа Банк»">Альфа-Банк</option>
-          <option value="АТ «Ощадбанк»">Ощадбанк</option>
-        </select>
-      </div>
-      
 
-	  <h2>Дані для формування заяви</h2>
-      <div class="input-text-container">
-        <input
-          type="text"
-          class="input-text"
-          placeholder=" "
-          id="last_name"
-          maxlength="70"
-		  autocomplete="on"
-        />
-        <div class="floater"></div>
-      </div>
-      <div class="input-text-container">
-        <input
-          type="text"
-          class="input-text"
-          placeholder=" "
-          id="first_name"
-          maxlength="70"
-		  autocomplete="on"
-        />
-        <div class="floater"></div>
-      </div>
-      <div class="input-text-container">
-        <input
-          type="text"
-          class="input-text"
-          placeholder=" "
-          id="patronymic"
-          maxlength="70"
-		  autocomplete="on"
-        />
-        <div class="floater"></div>
-      </div>
-      <div>
-        <input
-          type="checkbox"
-          id="patronymic_checkbox"
-          name="check_patronymic"
-          onclick="setTimeout(checkPatronymicCheckbox(), 0);"
-        />
-        <label for="patronymic_checkbox">По-батькові відсутнє</label>
-      </div>
-	  <!-- <div id="main" hidden="true"> -->
-      <div class="select-statuses">
-        <!-- Визначення статі для коректної подачи заяви -->
-        <div class="gender_status switcher">
-          <input
-            type="radio"
-            id="male_status"
-            name="gender_status_radio"
-            value="Male"
-          />
-          <label
-            for="male_status"
-            class="left-switcher-label"
-            onclick="timeoutCheckSex();"
-          >
-            <i class="fas fa-mars"></i>
-          </label>
+<head>
+  <title>
+    Формування заяви для зміни картки | Студрада КПІ ім. Ігоря Сікорського
+  </title>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" type="text/css" href="styles/change_card.css" />
+  <link rel="stylesheet" type="text/css" href="styles/material_input.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet" />
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon_package/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon_package/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon_package/favicon-16x16.png" />
+  <!-- <link rel="manifest" href="favicon_package/site.webmanifest"> -->
+  <link rel="mask-icon" href="favicon_package/safari-pinned-tab.svg" color="#5bbad5" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="msapplication-TileColor" content="#da532c" />
+  <meta name="theme-color" content="#ffffff" />
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+  <script type="text/javascript" src="scripts/change_card.js" defer></script>
+  <script type="text/javascript" src="scripts\node_modules\shevchenko\dist\umd\shevchenko.min.js"></script>
+  <script src="scripts/pdfmake.min.js"></script>
+  <script src="scripts/vfs_fonts.js"></script>
+  <script src="https://unpkg.com/imask"></script>
+</head>
 
-          <input
-            type="radio"
-            id="female_status"
-            name="gender_status_radio"
-            value="Female"
-          />
-          <label
-            for="female_status"
-            class="right-switcher-label"
-            onclick="timeoutCheckSex();"
-          >
-            <i class="fas fa-venus"></i>
-          </label>
-        </div>
+<body>
+  <h1>Зміна банку для отримання стипендії</h1>
+  <label for="bank_select">Обери банк, в який хочеш перейти</label>
+  <form>
+    <div class="bank-container">
+      <select name="bank_select" id="bank_select">
+        <option value="АТ КБ «ПРИВАТБАНК»">ПриватБанк</option>
+        <option value="АТ «Універсал Банк» (monobank)" selected="selected">Монобанк</option>
+        <option value="ВАТ «Альфа Банк»">Альфа-Банк</option>
+        <option value="АТ «Ощадбанк»">Ощадбанк</option>
+      </select>
+    </div>
 
-        <!-- Визначення студента/аспіранта -->
-        <div class="study_status switcher">
-          <input 
-            type="radio" 
-            id="student_status" 
-            name="study_status_radio" 
-            onclick="checkStudyStatus();" 
-            value="студентки"/>
-          <label
-            id="student_label"
-            style = 'display: none; ';
-            class="left-switcher-label"
-            for="student_status"
-			onclick="checkStudy();">
-          </label>
 
-          <input 
-            type="radio" 
-            id="aspirant_status" 
-            name="study_status_radio" 
-            onclick="checkStudyStatus();" 
-            value="аспірантки"/>
-          <label
-            id="aspirant_label"
-            style = 'display: none; ';
-            class="right-switcher-label"
-            for="aspirant_status"
-            onclick="checkStudy();"
-			></label
-          >
-        </div>
-      </div>
+    <h2>Дані для формування заяви</h2>
+    <div class="input-text-container">
+      <input type="text" class="input-text" placeholder=" " id="last_name" maxlength="70" autocomplete="on" />
+      <div class="floater"></div>
+    </div>
+    <div class="input-text-container">
+      <input type="text" class="input-text" placeholder=" " id="first_name" maxlength="70" autocomplete="on" />
+      <div class="floater"></div>
+    </div>
+    <div class="input-text-container">
+      <input type="text" class="input-text" placeholder=" " id="patronymic" maxlength="70" autocomplete="on" />
+      <div class="floater"></div>
+    </div>
+    <div>
+      <input type="checkbox" id="patronymic_checkbox" name="check_patronymic" />
+      <label for="patronymic_checkbox">По-батькові відсутнє</label>
+    </div>
+    <div class="input-text-container">
+      <input type="text" class="input-text" placeholder=" " id="phone" maxlength="70" autocomplete="on" />
+      <div class="floater"></div>
+    </div>
 
-      <div class="input-text-container">
-        <input
-        type="text"
-        class="input-text"
-        placeholder=" "
-        id="phone"
-        maxlength="70"
-		autocomplete="on"
-        /> 
-        <div class="floater"></div>
-      </div>
-      
-<!--       <div class="input-text-container">
+    <!--       <div class="input-text-container">
         <input
         type="text"
         class="input-text"
@@ -191,102 +71,70 @@
         />
         <div class="floater"></div>
       </div> -->
-	  
-	  
-	  <div class="input-text-container">
-	<input 
-	type="text"
-	list="faculty-value"
-	class="input-text"
-    placeholder=""
-    id="department">
-<datalist id="faculty-value">
-	<option value="ІПСА">Інститут прикладного та системного аналізу</option>
-	<option value="ІТС">Iнститут телекомунiкацiйних систем</option>
-	<option value="ВПІ">Видавничо-полiграфiчний інститут</option>
-	<option value="ІАТ">Інститут аерокосмічних технологій</option>
-	<option value="ІЕЕ">Інститут енергозбереження та енергоменеджменту</option>
-	<option value="ІМЗ">Інститут матеріалознавства та зварювання ім. Є.О. Патона</option>
-	<option value="ІСЗЗІ">Інститут спеціального зв'язку та захисту інформації</option>
-	<option value="ММІ">Механiко-машинобудiвний iнститут</option>
-	<option value="ФТІ">Фiзико-технiчний iнститут</option>
-	<option value="ІХФ">Інженерно-хiмiчний факультет</option>
-	<option value="ПБФ">Приладобудiвний факультет</option>
-	<option value="РТФ">Радiотехнiчний факультет</option>
-	<option value="ТЕФ">Теплоенергетичний факультет</option>
-	<option value="ФБМІ">Факультет біомедичної інженерії</option>
-	<option value="ФБТ">Факультет бiотехнологiї i бiотехнiки</option>
-	<option value="ФЕА">Факультет електроенерготехнiки та автоматики</option>
-	<option value="ФЕЛ">Факультет електронiки</option>
-	<option value="ФІОТ">Факультет iнформатики та обчислювальної технiки</option>
-	<option value="ФЛ">Факультет лiнгвiстики</option>
-	<option value="ФММ">Факультет менеджменту та маркетингу</option>
-	<option value="ФСП">Факультет соціології і права</option>
-	<option value="ФПМ">Факультет прикладної математики</option>
-	<option value="ФМФ">Фiзико-математичний факультет</option>
-	<option value="ХТФ">Хiмiко-технологiчний факультет</option>
-</datalist>	
 
-        <div class="floater"></div>
-</div>
-	  
 
-      <div class="input-text-container">
-        <input
-        data-content="Група"
-        type="text"
-        class="input-text"
-        id="group"
-        placeholder=" "
-        maxlength="7"
-		autocomplete="on"
-        />
-        <div class="floater"></div>
-      </div>
+    <div class="input-text-container">
+      <input type="text" list="faculty-value" class="input-text" placeholder="" id="department">
+      <datalist id="faculty-value">
+        <option value="ІПСА">Інститут прикладного та системного аналізу</option>
+        <option value="ІТС">Iнститут телекомунiкацiйних систем</option>
+        <option value="ВПІ">Видавничо-полiграфiчний інститут</option>
+        <option value="ІАТ">Інститут аерокосмічних технологій</option>
+        <option value="ІЕЕ">Інститут енергозбереження та енергоменеджменту</option>
+        <option value="ІМЗ">Інститут матеріалознавства та зварювання ім. Є.О. Патона</option>
+        <option value="ІСЗЗІ">Інститут спеціального зв'язку та захисту інформації</option>
+        <option value="ММІ">Механiко-машинобудiвний iнститут</option>
+        <option value="ФТІ">Фiзико-технiчний iнститут</option>
+        <option value="ІХФ">Інженерно-хiмiчний факультет</option>
+        <option value="ПБФ">Приладобудiвний факультет</option>
+        <option value="РТФ">Радiотехнiчний факультет</option>
+        <option value="ТЕФ">Теплоенергетичний факультет</option>
+        <option value="ФБМІ">Факультет біомедичної інженерії</option>
+        <option value="ФБТ">Факультет бiотехнологiї i бiотехнiки</option>
+        <option value="ФЕА">Факультет електроенерготехнiки та автоматики</option>
+        <option value="ФЕЛ">Факультет електронiки</option>
+        <option value="ФІОТ">Факультет iнформатики та обчислювальної технiки</option>
+        <option value="ФЛ">Факультет лiнгвiстики</option>
+        <option value="ФММ">Факультет менеджменту та маркетингу</option>
+        <option value="ФСП">Факультет соціології і права</option>
+        <option value="ФПМ">Факультет прикладної математики</option>
+        <option value="ФМФ">Фiзико-математичний факультет</option>
+        <option value="ХТФ">Хiмiко-технологiчний факультет</option>
+      </datalist>
 
-      <div class="input-text-container">
-        <input
-        type="text"
-        class="input-text"
-        placeholder=" "
-        id="tax_number"
-        maxlength="10"
-		autocomplete="on"
-        />
-        <div class="floater"></div>
-      </div>
-
-	<div class="input-text-container" id="card_number_container" hidden="true">
-        <input
-        type="text"
-        class="input-text"
-        placeholder=" "
-        id="card_number"
-        maxlength="16"
-        />
-        <div class="floater"></div>
-      </div>
-
-	<div class="input-text-container" id="iban_container">
-        <input
-        type="text"
-        class="input-text"
-        placeholder=" "
-        id="iban_number"
-        maxlength="35"
-        />
-        <div class="floater"></div>
-      </div>
-      
-        
-    </form>
-
-    <!-- Формування заяви -->
-    <div class="application">
-      <button onclick="onDownload()" id="create_application">
-        <i class="fas fa-file-pdf"></i>Завантажити заяву
-      </button>
+      <div class="floater"></div>
     </div>
-<!-- 	</div> -->
-  </body>
+
+
+    <div class="input-text-container">
+      <input data-content="Група" type="text" class="input-text" id="group" placeholder=" " maxlength="7"
+        autocomplete="on" />
+      <div class="floater"></div>
+    </div>
+
+    <div class="input-text-container">
+      <input type="number" class="input-text" placeholder=" " id="tax_number" autocomplete="on" />
+      <div class="floater"></div>
+    </div>
+    <div class="input-text-container" id="card_number_container">
+      <input type="text" class="input-text" placeholder=" " id="card_number" maxlength="16" />
+      <div class="floater"></div>
+    </div>
+    <div class="input-text-container" id="iban_container">
+      <input type="text" class="input-text" placeholder=" " id="iban_number" />
+      <div class="floater"></div>
+    </div>
+
+
+  </form>
+
+  <!-- Формування заяви -->
+  <div class="application">
+    <button onclick="OnDownload()" id="create_application">
+      <i class="fas fa-file-pdf"></i>Завантажити заяву
+    </button>
+  </div>
+  <!-- 	</div> -->
+</body>
+
 </html>
