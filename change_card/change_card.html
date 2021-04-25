@@ -30,10 +30,10 @@
   <form>
     <div class="bank-container">
       <select name="bank_select" id="bank_select">
-        <option value="АТ КБ «ПРИВАТБАНК»">ПриватБанк</option>
+        <!-- <option value="АТ КБ «ПРИВАТБАНК»">ПриватБанк</option>
         <option value="АТ «Універсал Банк» (monobank)" selected="selected">Монобанк</option>
         <option value="ВАТ «Альфа Банк»">Альфа-Банк</option>
-        <option value="АТ «Ощадбанк»">Ощадбанк</option>
+        <option value="АТ «Ощадбанк»">Ощадбанк</option> -->
       </select>
     </div>
 
@@ -55,7 +55,7 @@
       <input type="checkbox" id="patronymic_checkbox" name="check_patronymic" />
       <label for="patronymic_checkbox">По-батькові відсутнє</label>
     </div>
-    <div class="input-text-container">
+    <div class="input-text-container" id="phone_container">
       <input type="text" class="input-text" placeholder=" " id="phone" maxlength="70" autocomplete="on" />
       <div class="floater"></div>
     </div>
@@ -112,7 +112,7 @@
       <div class="floater"></div>
     </div>
 
-    <div class="input-text-container">
+    <div class="input-text-container" id="tax_container">
       <input type="number" class="input-text" placeholder=" " id="tax_number" autocomplete="on" />
       <div class="floater"></div>
     </div>
