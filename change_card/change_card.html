@@ -27,7 +27,7 @@
 <body>
   <h1>Зміна банку для отримання стипендії</h1>
   <label for="bank_select">Обери банк, в який хочеш перейти</label>
-  <form>
+  <form id="form" onsubmit="return false">
     <div class="bank-container">
       <select name="bank_select" id="bank_select">
         <!-- <option value="АТ КБ «ПРИВАТБАНК»">ПриватБанк</option>
@@ -40,15 +40,15 @@
 
     <h2>Дані для формування заяви</h2>
     <div class="input-text-container">
-      <input type="text" class="input-text" placeholder=" " id="last_name" maxlength="70" autocomplete="on" />
+      <input type="text" class="input-text" placeholder=" " id="last_name" maxlength="70" autocomplete="on" required/>
       <div class="floater"></div>
     </div>
     <div class="input-text-container">
-      <input type="text" class="input-text" placeholder=" " id="first_name" maxlength="70" autocomplete="on" />
+      <input type="text" class="input-text" placeholder=" " id="first_name" maxlength="70" autocomplete="on" required/>
       <div class="floater"></div>
     </div>
     <div class="input-text-container">
-      <input type="text" class="input-text" placeholder=" " id="patronymic" maxlength="70" autocomplete="on" />
+      <input type="text" class="input-text" placeholder=" " id="patronymic" maxlength="70" autocomplete="on" required/>
       <div class="floater"></div>
     </div>
     <div>
@@ -56,7 +56,7 @@
       <label for="patronymic_checkbox">По-батькові відсутнє</label>
     </div>
     <div class="input-text-container" id="phone_container">
-      <input type="text" class="input-text" placeholder=" " id="phone" maxlength="70" autocomplete="on" />
+      <input type="text" class="input-text" placeholder=" " id="phone" maxlength="70" autocomplete="on" pattern="^\+38[0-9]{10}$" required/>
       <div class="floater"></div>
     </div>
 
@@ -74,7 +74,7 @@
 
 
     <div class="input-text-container">
-      <input type="text" list="faculty-value" class="input-text" placeholder="" id="department">
+      <input type="text" list="faculty-value" class="input-text" placeholder="" id="department" required>
       <datalist id="faculty-value">
         <option value="ІПСА">Інститут прикладного та системного аналізу</option>
         <option value="ІТС">Iнститут телекомунiкацiйних систем</option>
@@ -107,21 +107,21 @@
 
 
     <div class="input-text-container">
-      <input data-content="Група" type="text" class="input-text" id="group" placeholder=" " maxlength="7"
-        autocomplete="on" />
+      <input data-content="Група" type="text" class="input-text" id="group" placeholder=" " maxlength="7" pattern="^([A-Я]|[а-я]){2}-[0-9]{2}([A-Я]|[а-я]){0,2}$"
+        autocomplete="on" required/>
       <div class="floater"></div>
     </div>
 
     <div class="input-text-container" id="tax_container">
-      <input type="number" class="input-text" placeholder=" " id="tax_number" autocomplete="on" />
+      <input type="text" class="input-text" placeholder=" " id="tax_number" autocomplete="on" pattern="^[0-9]{10}$" required/>
       <div class="floater"></div>
     </div>
     <div class="input-text-container" id="card_number_container">
-      <input type="text" class="input-text" placeholder=" " id="card_number" maxlength="16" />
+      <input type="text" class="input-text" placeholder=" " id="card_number" maxlength="16" pattern="^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$" required/>
       <div class="floater"></div>
     </div>
     <div class="input-text-container" id="iban_container">
-      <input type="text" class="input-text" placeholder=" " id="iban_number" />
+      <input type="text" class="input-text" placeholder=" " id="iban_number" pattern="^([U,u][A,a])?((\s|-)*\d(\s|-)*){27,}$" required/>
       <div class="floater"></div>
     </div>
 

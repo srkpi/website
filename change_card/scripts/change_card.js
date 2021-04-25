@@ -2,7 +2,7 @@
 const bank_properties = {
   "АТ КБ «ПРИВАТБАНК»": {
     simple_bank_name: "Приватбанк",
-    iban_number: false,
+    iban_number: true,
     card_number: false,
     tax_number: true,
     date_of_birth: false,
@@ -271,14 +271,11 @@ class FormController {
 
   async GetGroup() {
     const group = $("#group").val();
-    if (!group) alert("Ти забув ввести групу.");
-    else {
-      const url = `https://api.rozklad.org.ua/v2/groups/${group}`;
-      let response = await fetch(url);
-      let group_info = await response.json();
-      if (group_info.message == "Ok") return group.toUpperCase();
-      else alert("Такої групи немає. Перевір та спробуй ще.");
-    }
+    const url = `https://api.rozklad.org.ua/v2/groups/${group}`;
+    let response = await fetch(url);
+    let group_info = await response.json();
+    if (group_info.message == "Ok") return group.toUpperCase();
+    alert("Такої групи немає. Перевір та спробуй ще.");
     return "";
   }
 
@@ -288,19 +285,10 @@ class FormController {
 
   GetDepartment() {
     this.application.departament_name = $("#department").val();
-    if (!this.application.departament_name) {
-      this.application.err = true;
-      alert("Ти забув обрати факультет/інститут.");
-    }
   }
 
   GetID() {
     const tax_number = $("#tax_number").val();
-    if (tax_number.length != 10) {
-      this.application.err = true;
-      alert("Ідентифікаційний код завжди містить 10 цифр.");
-      return;
-    }
     this.application.tax_number = tax_number;
     this.application.sex = tax_number[8] % 2; // ПередостаннЯ цифра ІПН кодує стать власника
   }
@@ -345,11 +333,6 @@ class FormController {
 
   GetPhoneNumber() {
     let phone = $("#phone").val().replace(/[^\d]/g, ""); // Видалити усі НЕ цифри з номера телефону;
-    if (phone.length != 12 || phone.substring(0, 2) != "38") {
-      this.application.err = true;
-      alert("Треба записати номер телефону, починаючи з +380.");
-      return;
-    }
     this.application.phone_number = `+38(${phone.substring(
       2,
       5
@@ -361,21 +344,11 @@ class FormController {
 
   GetIBAN() {
     let iban = $("#iban_number").val().replace(/[^\d]/g, ""); // Видалити усі НЕ цифри з IBAN;
-    if (iban.length != 27) {
-      this.application.err = true;
-      alert("IBAN має складатися з 27 цифр.");
-      return;
-    }
     this.application.iban_number = iban;
   }
 
   GetCardNumber() {
     let card_number = $("#card_number").val().replace(/[^\d]/g, ""); // Видалити усі НЕ цифри з номера картки;
-    if (card_number.length != 16) {
-      this.application.err = true;
-      alert("Номер картки має складатися з 16 цифр.");
-      return;
-    }
     this.application.card_number = card_number;
   }
 
@@ -412,18 +385,28 @@ class Mapping {
 
   RenderInputFields() {
     const properties = bank_properties[bank_select.value];
-    document.getElementById("iban_container").hidden = !properties.iban_number;
-    document.getElementById("tax_container").hidden = !properties.tax_number;
+    document.getElementById("iban_container").hidden = document.getElementById(
+      "iban_number"
+    ).disabled = !properties.iban_number;
+
+    document.getElementById("tax_container").hidden = document.getElementById(
+      "tax_number"
+    ).disabled = !properties.tax_number;
+
     document.getElementById(
       "card_number_container"
-    ).hidden = !properties.card_number;
-    document.getElementById("phone_container").hidden = !properties.phone;
+    ).hidden = document.getElementById(
+      "card_number"
+    ).disabled = !properties.card_number;
+
+    document.getElementById("phone_container").hidden = document.getElementById(
+      "phone"
+    ).disabled = !properties.phone;
   }
 
   RenderBankSelect() {
     let bank_select = document.getElementById("bank_select");
     for (let bank in bank_properties) {
-      console.log(bank);
       bank_select.innerHTML += `
 			<option value="${bank}">${bank_properties[bank].simple_bank_name}</option>
 		  `;
@@ -433,6 +416,16 @@ class Mapping {
 }
 
 async function OnDownload() {
+  // ТО, ЧТО ЭТО РАБОТЕТ - ЧУДО
+  document.getElementById("form").requestSubmit();
+  let validity = false;
+  document
+    .getElementsByClassName("input-text")
+    .forEach(
+      (input_field) => (validity = validity || !input_field.checkValidity())
+    );
+  if (validity) return;
+  // НАЧИНАЯ ОТСЮДА МОЖНО ТРОГАТЬ
   let application = new Application();
   let controller = new FormController(application);
   application.group = await controller.GetGroup();
