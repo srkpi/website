@@ -82,6 +82,7 @@ class Application {
     this.sex = 0;
   }
 
+  // Шаблон рядка у заяві
   GetRowTemplate(field_name, value) {
     console.log(value);
     return {
@@ -103,6 +104,7 @@ class Application {
     };
   }
 
+  // Заява сформована для обраного банку
   GetTemplateByBank() {
     let application_body = [];
     let properties = bank_properties[this.bank_name];
@@ -125,6 +127,7 @@ class Application {
     return application_body;
   }
 
+  // Формування отриманих із форми даних у PDF
   ToPDF() {
     const place_of_study = `${this.study_status} ${this.course_number} курсу, групи ${this.group}, ${this.departament_name}`;
     const left_margin = GetMargin(this.full_name.length, place_of_study.length);
@@ -383,25 +386,17 @@ class Mapping {
     this.RenderBankSelect();
   }
 
+  // Приховує поля, що не використовуються для обраного банку
   RenderInputFields() {
     const properties = bank_properties[bank_select.value];
-    document.getElementById("iban_container").hidden = document.getElementById(
-      "iban_number"
-    ).disabled = !properties.iban_number;
-
-    document.getElementById("tax_container").hidden = document.getElementById(
-      "tax_number"
-    ).disabled = !properties.tax_number;
-
-    document.getElementById(
-      "card_number_container"
-    ).hidden = document.getElementById(
-      "card_number"
-    ).disabled = !properties.card_number;
-
-    document.getElementById("phone_container").hidden = document.getElementById(
-      "phone"
-    ).disabled = !properties.phone;
+    let form = document.getElementById("form");
+    for (const key in properties) {
+      let input_field = form.querySelector(`#${key}`);
+      if(input_field) {
+        let field_container = input_field.parentNode;
+        field_container.hidden = input_field.disabled = !properties[key];
+      }
+    }
   }
 
   RenderBankSelect() {
@@ -416,7 +411,6 @@ class Mapping {
 }
 
 async function OnDownload() {
-  // ТО, ЧТО ЭТО РАБОТЕТ - ЧУДО
   document.getElementById("form").requestSubmit();
   let validity = false;
   document
@@ -425,7 +419,6 @@ async function OnDownload() {
       (input_field) => (validity = validity || !input_field.checkValidity())
     );
   if (validity) return;
-  // НАЧИНАЯ ОТСЮДА МОЖНО ТРОГАТЬ
   let application = new Application();
   let controller = new FormController(application);
   application.group = await controller.GetGroup();
