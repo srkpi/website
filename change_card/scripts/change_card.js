@@ -273,7 +273,7 @@ class FormController {
   }
 
   async GetGroup() {
-    const group = $("#group").val();
+    const group = document.getElementById("group").value;
     const url = `https://api.rozklad.org.ua/v2/groups/${group}`;
     let response = await fetch(url);
     let group_info = await response.json();
@@ -287,11 +287,13 @@ class FormController {
   }
 
   GetDepartment() {
-    this.application.departament_name = $("#department").val();
+    this.application.departament_name = document
+      .getElementById("department")
+      .value;
   }
 
   GetID() {
-    const tax_number = $("#tax_number").val();
+    const tax_number = document.getElementById("tax_number").value;
     this.application.tax_number = tax_number;
     this.application.sex = tax_number[8] % 2; // ПередостаннЯ цифра ІПН кодує стать власника
   }
@@ -326,16 +328,16 @@ class FormController {
   GetFullName() {
     const anthroponym = {
       gender: this.application.sex ? "male" : "female",
-      firstName: $("#first_name").val().trim(),
-      lastName: $("#last_name").val().trim(),
-      middleName: $("#patronymic").val().trim(),
+      firstName: document.getElementById("first_name").value.trim(),
+      lastName: document.getElementById("last_name").value.trim(),
+      middleName: document.getElementById("patronymic").value.trim(),
     };
     const full_name_in_genetive = shevchenko.inGenitive(anthroponym); // Отримуємо ім'я в родовому відмінку
     this.application.full_name = `${full_name_in_genetive.lastName} ${full_name_in_genetive.firstName} ${full_name_in_genetive.middleName}`;
   }
 
   GetPhoneNumber() {
-    let phone = $("#phone").val().replace(/[^\d]/g, ""); // Видалити усі НЕ цифри з номера телефону;
+    let phone = document.getElementById("phone").value.replace(/[^\d]/g, ""); // Видалити усі НЕ цифри з номера телефону;
     this.application.phone_number = `+38(${phone.substring(
       2,
       5
@@ -346,12 +348,18 @@ class FormController {
   }
 
   GetIBAN() {
-    let iban = $("#iban_number").val().replace(/[^\d]/g, ""); // Видалити усі НЕ цифри з IBAN;
+    let iban = document
+      .getElementById("iban_number")
+      .value
+      .replace(/[^\d]/g, ""); // Видалити усі НЕ цифри з IBAN;
     this.application.iban_number = iban;
   }
 
   GetCardNumber() {
-    let card_number = $("#card_number").val().replace(/[^\d]/g, ""); // Видалити усі НЕ цифри з номера картки;
+    let card_number = document
+      .getElementById("card_number")
+      .value
+      .replace(/[^\d]/g, ""); // Видалити усі НЕ цифри з номера картки;
     this.application.card_number = card_number;
   }
 
@@ -392,7 +400,7 @@ class Mapping {
     let form = document.getElementById("form");
     for (const key in properties) {
       let input_field = form.querySelector(`#${key}`);
-      if(input_field) {
+      if (input_field) {
         let field_container = input_field.parentNode;
         field_container.hidden = input_field.disabled = !properties[key];
       }
